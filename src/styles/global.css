@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* CONFIGURACIÓN DEL TEMA VISIONPATH (ORANGE EDITION)
+  Estilo: Futurista / Industrial / Astro Dark 
+*/
+
+@theme {
+  /* Paleta de Colores VisionPath - Orange */
+  --color-background: #050505;  /* Negro casi puro para mayor contraste */
+  --color-surface: #121212;     /* Gris oscuro neutro para tarjetas */
+  
+  /* El Naranja Protagonista */
+  --color-primary: #FF5500;     /* Naranja Neón Intenso (Vision Orange) */
+  --color-secondary: #FF8800;   /* Ámbar/Naranja más claro para detalles */
+  
+  --color-accent: #E5E5E5;      /* Blanco/Gris claro para lectura */
+  --color-muted: #737373;       /* Gris medio para textos secundarios */
+  
+  /* Tipografía */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Efectos personalizados (Glows Naranjas) */
+  --image-hero-glow: radial-gradient(ellipse at center, rgba(255, 85, 0, 0.20) 0%, rgba(0,0,0,0) 70%);
+  
+  /* Animación de gradiente ajustada a tonos cálidos */
+  --animate-gradient: gradient 8s linear infinite;
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+/* ESTILOS GLOBALES */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-accent);
+  }
+
+  body {
+    @apply antialiased overflow-x-hidden;
+  }
+  
+  /* Selección de texto Naranja */
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+}
+
+/* UTILIDADES PERSONALIZADAS */
+
+@layer utilities {
+  /* Texto con gradiente "Lava" (Naranja -> Rojo -> Amarillo) */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[--color-primary] via-red-500 to-yellow-500 animate-gradient bg-[length:200%_auto];
+  }
+
+  .text-glow-pop {
+    /* METAL FUNDIDO: Blanco arriba, Naranja denso abajo */
+    background: linear-gradient(
+      180deg, 
+      #FFFFFF 10%,     /* Reflejo metálico superior */
+      #FFDAB9 45%,     /* Transición suave (Durazno) */
+      #FF5500 55%,     /* EL CORTE: Naranja VisionPath */
+      #BF2800 90%      /* Rojo oscuro base para peso visual */
+    );
+    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* Sombra dura para separar del fondo negro (Sin borrosidad) */
+    filter: drop-shadow(0 2px 0px rgba(0,0,0,1)); 
+  }
+  
+  /* Glassmorphism ajustado (Borde naranja sutil) */
+  .glass {
+    @apply bg-surface/40 backdrop-blur-md border border-white/5 hover:border-[--color-primary]/30 transition-colors duration-300;
+  }
+  
+  /* Utilidad para botones o tarjetas activas */
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(255, 85, 0, 0.3);
+  }
+}

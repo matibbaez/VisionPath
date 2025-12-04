@@ -1,0 +1,23 @@
+---
+// src/components/Logo.astro
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<a href="#home" class:list={["group flex items-center gap-3 focus:outline-none", className]}>
+    
+    <img 
+        src="/visionPath.png" 
+        alt="VisionPath Logo" 
+        class="w-10 h-10 object-contain transition-transform duration-500 group-hover:scale-110"
+    />
+
+    <div class="flex flex-col">
+        <span class="text-xl font-bold tracking-tight text-white leading-none group-hover:text-white/90 transition-colors">
+            Vision<span class="text-[--color-primary] drop-shadow-[0_0_10px_rgba(255,85,0,0.3)]">Path</span>.
+        </span>
+    </div>
+</a>

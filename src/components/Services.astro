@@ -1,0 +1,148 @@
+---
+const services = [
+  {
+    title: "Ingeniería Web High-End",
+    desc: "No hacemos 'páginas web'. Construimos plataformas digitales ultrarrápidas. Arquitectura JAMstack, renderizado híbrido y optimización de núcleo.",
+    icon: "code",
+    tags: ["Astro", "React", "TypeScript", "Tailwind"],
+    colSpan: "md:col-span-2",
+  },
+  {
+    title: "UI/UX System Design",
+    desc: "Interfaces que se sienten vivas. Micro-interacciones, sistemas de diseño escalables y accesibilidad nativa.",
+    icon: "design",
+    tags: ["Figma", "Motion", "System"],
+    colSpan: "md:col-span-1",
+  },
+  {
+    title: "Mobile Solutions",
+    desc: "Aplicaciones nativas y PWAs que funcionan en cualquier dispositivo con una sola base de código eficiente.",
+    icon: "mobile",
+    tags: ["Ionic", "React Native", "PWA"],
+    colSpan: "md:col-span-1",
+  },
+  {
+    title: "Data & SEO Growth",
+    desc: "Estrategias basadas en datos. Tu web no solo debe verse bien, debe dominar los motores de búsqueda.",
+    icon: "chart",
+    tags: ["Analytics", "SEO Técnico", "CRO"],
+    colSpan: "md:col-span-2",
+  },
+];
+---
+
+<section id="servicios" class="py-32 relative overflow-hidden bg-black">
+  
+  <div class="absolute inset-0 z-0 opacity-[0.05] pointer-events-none mix-blend-overlay" 
+       style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');">
+  </div>
+
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[--color-primary] opacity-10 blur-[120px] rounded-full pointer-events-none z-0 translate-x-1/2 -translate-y-1/2"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    <div class="mb-16 md:mb-24">
+        <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">/// CAPACIDADES DEL SISTEMA</span>
+        <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
+            Diseñamos el <span class="text-glow-pop">futuro</span> <br/>
+            de tu marca.
+        </h2>
+    </div>
+
+    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 group">
+      
+      {services.map((service) => (
+        <div class={`relative rounded-3xl border border-white/10 bg-[#0A0A0A] p-8 overflow-hidden spotlight-card ${service.colSpan} group/card hover:border-white/20 transition-colors`}>
+          
+          <div 
+            class="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+            style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 85, 0, 0.15), transparent 40%);"
+          ></div>
+          <div 
+            class="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover/card:opacity-100"
+            style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 85, 0, 0.4), transparent 40%); mask-image: linear-gradient(black, black); -webkit-mask-image: linear-gradient(black, black); mask-composite: exclude; -webkit-mask-composite: xor;"
+          ></div>
+
+          <div class="relative h-full flex flex-col justify-between z-10">
+            <div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 border border-white/10 text-[--color-primary] group-hover/card:scale-110 transition-transform duration-300">
+                    {service.icon === 'code' && (
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                    )}
+                    {service.icon === 'design' && (
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+                    )}
+                    {service.icon === 'mobile' && (
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                    )}
+                    {service.icon === 'chart' && (
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                    )}
+                </div>
+
+                <h3 class="text-2xl font-bold text-white mb-3">{service.title}</h3>
+                <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                    {service.desc}
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/5">
+                {service.tags.map(tag => (
+                    <span class="text-xs font-mono px-2 py-1 rounded bg-white/5 text-gray-400 border border-white/5">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Script Spotlight (Sin cambios)
+  const container = document.getElementById('cards-container');
+  if (container) {
+    container.onmousemove = (e) => {
+      for (const card of document.getElementsByClassName('spotlight-card')) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      }
+    };
+  }
+</script>
+
+<style>
+    .spotlight-card {
+        --mouse-x: 0px;
+        --mouse-y: 0px;
+    }
+    
+    .spotlight-card::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 1.5rem;
+        padding: 1px;
+        background: radial-gradient(
+            800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 85, 0, 0.6),
+            transparent 40%
+        );
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: xor;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .spotlight-card:hover::before {
+        opacity: 1;
+    }
+</style>
