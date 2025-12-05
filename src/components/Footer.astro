@@ -36,9 +36,13 @@ const socials = [
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
         
-        <span class="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-[--color-primary] text-xs md:text-sm font-mono tracking-widest mb-8 md:mb-12">
-            ● SYSTEM STATUS: READY TO DEPLOY
-        </span>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-300 mb-8 md:mb-12 opacity-0 animate-fade-in-up">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6600] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#FF6600]"></span>
+            </span>
+            <span class="tracking-widest">SYSTEM STATUS: READY TO DEPLOY</span>
+        </div>
 
         <div class="mb-12 md:mb-16 w-full">
             <h2 class="font-black tracking-tighter leading-[0.85] text-[2.9rem] sm:text-5xl md:text-8xl lg:text-[9rem] uppercase">
@@ -84,7 +88,7 @@ const socials = [
                     aria-label={link.name}
                     class="group relative flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-gray-400 transition-all duration-300 hover:bg-[--color-primary] hover:border-[--color-primary] hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(255,85,0,0.4)]"
                 >
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d={link.path} />
                     </svg>
                     
@@ -116,3 +120,23 @@ const socials = [
         });
     }
 </script>
+
+<style>
+    /* AGREGAMOS LOS KEYFRAMES AQUÍ TAMBIÉN PARA QUE FUNCIONE LA ANIMACIÓN EN EL FOOTER */
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        /* Un pequeño delay extra para el footer queda bien */
+        animation-delay: 0.2s; 
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

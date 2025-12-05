@@ -6,33 +6,36 @@
          style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');">
     </div>
 
-    <div class="absolute inset-0 z-0 perspective-grid opacity-40 md:opacity-30">
+    <div class="absolute inset-0 z-0 perspective-grid opacity-40 md:opacity-30 will-change-transform">
         <div class="grid-lines"></div>
     </div>
 
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[1200px] h-[350px] md:h-[800px] bg-[--color-primary] opacity-25 md:opacity-15 blur-[90px] md:blur-[100px] rounded-full pointer-events-none z-0 animate-pulse-slow"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[1200px] h-[350px] md:h-[800px] bg-[--color-primary] opacity-25 md:opacity-15 blur-[90px] md:blur-[100px] rounded-full pointer-events-none z-0 animate-pulse-slow will-change-transform"></div>
 
 
     <div class="relative z-30 w-full px-4 flex flex-col items-center justify-center h-full">
         
-        <div class="animate-fade-in-up inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[10px] md:text-xs font-mono tracking-widest text-gray-400 mb-6 md:mb-10 hover:border-[--color-primary]/50 transition-colors cursor-default uppercase">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-300 mb-6 opacity-0 animate-fade-in-up">
             <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[--color-primary] opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-[--color-primary]"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6600] opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#FF6600]"></span>
             </span>
-            <span>Status: Online</span>
+            <span class="tracking-widest">SYSTEM STATUS: ONLINE</span>
         </div>
 
         <div class="relative w-full max-w-[90rem] mx-auto text-center">
             <div class="grid place-items-center">
-                <h1 class="col-start-1 row-start-1 font-black tracking-tighter leading-[0.9] text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] text-transparent uppercase select-none pointer-events-none z-0 transform translate-y-2 md:translate-y-4 opacity-30"
+                
+                <h1 aria-hidden="true" 
+                    class="col-start-1 row-start-1 font-black tracking-tighter leading-[0.9] text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] text-transparent uppercase select-none pointer-events-none z-0 transform translate-y-2 md:translate-y-4 opacity-30"
                     style="-webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.25);">
                     <span class="block">We Build</span>
                     <span class="block">The Future</span>
                 </h1>
+
                 <h1 class="col-start-1 row-start-1 font-black tracking-tighter leading-[0.9] text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] text-white uppercase z-10 mix-blend-normal">
-                    <span class="block animate-slide-up opacity-0" style="animation-delay: 0.1s;">We Build</span>
-                    <span class="block text-glow-pop animate-slide-up opacity-0 pb-2 md:pb-8" style="animation-delay: 0.3s;">
+                    <span class="block animate-slide-up opacity-0 will-change-transform" style="animation-delay: 0.1s;">We Build</span>
+                    <span class="block text-glow-pop animate-slide-up opacity-0 pb-2 md:pb-8 will-change-transform" style="animation-delay: 0.3s;">
                         The Future
                     </span>
                 </h1>
@@ -72,20 +75,39 @@
 </section>
 
 <style>
-    /* KEYFRAMES (Sin cambios) */
+    /* OPTIMIZACIÓN: will-change ayuda al navegador a saber qué animar */
+    .will-change-transform {
+        will-change: transform, opacity;
+    }
+
+    /* KEYFRAMES */
     @keyframes slideUp {
         from { transform: translateY(30px) scale(0.95); opacity: 0; }
         to { transform: translateY(0) scale(1); opacity: 1; }
     }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    @keyframes fadeIn { 
+        from { opacity: 0; } 
+        to { opacity: 1; } 
+    }
+    
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes pulseSlow {
         0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
         50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.1); }
     }
+
+    /* CLASES DE UTILIDAD PARA ANIMACIONES */
     .animate-slide-up { animation: slideUp 1s cubic-bezier(0.2, 1, 0.2, 1) forwards; }
     .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.5s; }
     .animate-pulse-slow { animation: pulseSlow 6s ease-in-out infinite; }
     
+    /* GRID 3D */
     .perspective-grid {
         transform: perspective(800px) rotateX(60deg) translateY(-50px) translateZ(-200px);
         overflow: hidden;
@@ -99,6 +121,8 @@
         animation: moveGrid 20s linear infinite;
         mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
         margin-left: -100%;
+        /* Optimización extra para la grilla infinita */
+        will-change: transform; 
     }
     @keyframes moveGrid {
         0% { transform: translateY(0); }
