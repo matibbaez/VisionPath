@@ -1,4 +1,7 @@
 ---
+import { getLangFromUrl } from '../utils/i18n';
+const lang = getLangFromUrl(Astro.url);
+
 const row1 = [
   { name: "Astro", icon: "https://astro.build/assets/press/astro-icon-light.svg" },
   { name: "React", icon: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" },
@@ -8,6 +11,10 @@ const row1 = [
   { name: "Figma", icon: "https://svgl.app/library/figma.svg" },
   { name: "Vercel", icon: "https://svgl.app/library/vercel.svg" },
 ];
+
+const title1 = lang === 'en' ? "Powered by" : "Potenciado por";
+const title2 = lang === 'en' ? "elite technology." : "tecnología de élite.";
+const header = lang === 'en' ? "SYSTEM ARCHITECTURE" : "ARQUITECTURA DEL SISTEMA";
 
 const row2 = [
   { name: "Supabase", icon: "https://svgl.app/library/supabase.svg" },
@@ -24,11 +31,11 @@ const row2 = [
     
     <div class="mb-16 md:mb-24 text-center relative z-10 px-6 max-w-5xl mx-auto">
         <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">
-            /// ARQUITECTURA DEL SISTEMA
+            /// {header}
         </span>
         <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
-            Potenciado por <br class="hidden md:block" />
-            <span class="text-glow-pop">tecnología de élite.</span>
+            {title1} <br class="hidden md:block" />
+            <span class="text-glow-pop">{title2}</span>
         </h2>
     </div>
 

@@ -1,0 +1,100 @@
+---
+import { getLangFromUrl } from '../utils/i18n';
+const lang = getLangFromUrl(Astro.url);
+
+const steps_es = [
+  { number: "01", title: "Discovery & Estrategia", desc: "No tiramos código a ciegas. Analizamos tu modelo de negocio, tu competencia y tus cuellos de botella para diseñar una arquitectura que resuelva problemas reales." },
+  { number: "02", title: "UX/UI Industrial", desc: "Diseñamos interfaces que no solo se ven bien, sino que convierten. Sistemas de diseño atómicos, prototipado de alta fidelidad y micro-interacciones que guían al usuario." },
+  { number: "03", title: "Ingeniería de Precisión", desc: "Desarrollo sobre Astro y React. Optimizamos cada línea de código para lograr tiempos de carga bajo 0.5s. Seguridad bancaria y escalabilidad nativa." },
+  { number: "04", title: "Despliegue & Escala", desc: "Infraestructura global en el borde (Edge). Tu sitio vive en servidores de todo el mundo para una disponibilidad del 99.9%. Monitoreo 24/7 y optimización continua." }
+];
+
+const steps_en = [
+  { number: "01", title: "Discovery & Strategy", desc: "We don't code blindly. We analyze your business model, competitors, and bottlenecks to design an architecture that solves real problems." },
+  { number: "02", title: "Industrial UX/UI", desc: "We design interfaces that convert. Atomic design systems, high-fidelity prototyping, and micro-interactions that guide the user." },
+  { number: "03", title: "Precision Engineering", desc: "Development on Astro and React. We optimize every line of code to achieve load times under 0.5s. Bank-grade security and native scalability." },
+  { number: "04", title: "Deploy & Scale", desc: "Global Edge infrastructure. Your site lives on servers worldwide for 99.9% uptime. 24/7 monitoring and continuous optimization." }
+];
+
+const steps = lang === 'en' ? steps_en : steps_es;
+const headerTitle = lang === 'en' ? "Concept to" : "Del concepto al";
+const headerHighlight = lang === 'en' ? "live system." : "sistema en vivo.";
+---
+
+<section id="workflow" class="py-24 md:py-32 bg-black relative">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="mb-20 text-center md:text-left reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">/// {lang === 'en' ? 'METHODOLOGY' : 'METODOLOGÍA'}</span>
+            <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
+                {headerTitle} <br/>
+                <span class="text-glow-pop">{headerHighlight}</span>
+            </h2>
+        </div>
+        <div class="relative grid grid-cols-1 gap-12 md:gap-0">
+            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/5 -translate-x-1/2 overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[--color-primary] to-transparent -translate-y-full transition-transform duration-[1.5s] ease-in-out scroll-line"></div>
+            </div>
+            {steps.map((step, index) => (
+                <div class={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} gap-8 md:gap-0 step-card opacity-0 translate-y-12 transition-all duration-700 ease-out`}>
+                    <div class={`w-full md:w-1/2 md:px-16 text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                        <div class="inline-block md:hidden mb-4 p-2 rounded-lg bg-white/5 border border-white/10">
+                            <span class="text-2xl font-bold text-[--color-primary] font-mono">/{step.number}</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-[--color-primary] transition-colors">{step.title}</h3>
+                        <p class="text-gray-400 leading-relaxed text-sm md:text-base">{step.desc}</p>
+                    </div>
+                    <div class="relative flex items-center justify-center w-16 h-16 shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                        <div class="step-circle w-12 h-12 rounded-full border border-white/10 bg-[#0A0A0A] flex items-center justify-center z-10 relative transition-all duration-700">
+                            <span class="text-[10px] font-bold text-white font-mono">{step.number}</span>
+                        </div>
+                        <div class="absolute inset-0 bg-[--color-primary] rounded-full blur-xl opacity-0 step-glow transition-all duration-1000"></div>
+                    </div>
+                    <div class="w-full md:w-1/2"></div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+<script>
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.25 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                target.classList.remove('opacity-0', 'translate-y-12');
+                const circle = target.querySelector('.step-circle');
+                if(circle) { circle.classList.remove('border-white/10'); circle.classList.add('border-[--color-primary]', 'shadow-[0_0_15px_rgba(255,85,0,0.4)]', 'scale-110'); }
+                const glow = target.querySelector('.step-glow');
+                if(glow) { glow.classList.remove('opacity-0'); glow.classList.add('opacity-40', 'animate-pulse-slow'); }
+                observer.unobserve(target);
+            }
+        });
+    }, observerOptions);
+    document.querySelectorAll('.step-card').forEach((el, index) => {
+        (el as HTMLElement).style.transitionDelay = `${index * 150}ms`;
+        observer.observe(el);
+    });
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-8');
+                titleObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => titleObserver.observe(el));
+    const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const line = entry.target.querySelector('.scroll-line');
+                if(line) { line.classList.remove('-translate-y-full'); line.classList.add('translate-y-0'); }
+            }
+        });
+    }, { threshold: 0.1 });
+    const workflowSection = document.getElementById('workflow');
+    if(workflowSection) lineObserver.observe(workflowSection);
+</script>
+<style>
+    @keyframes pulseSlow { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+    .animate-pulse-slow { animation: pulseSlow 3s infinite ease-in-out; }
+</style>

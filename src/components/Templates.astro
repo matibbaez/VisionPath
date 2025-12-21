@@ -1,8 +1,12 @@
 ---
-const templates = [
+// src/components/Templates.astro
+import { getLangFromUrl } from '../utils/i18n';
+const lang = getLangFromUrl(Astro.url);
+
+const templates_es = [
   {
     title: "Justicia & Ley",
-    category: "Specialty: Legal",
+    category: "Especialidad: Legal",
     images: [
         "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=800&auto=format&fit=crop",
@@ -14,7 +18,7 @@ const templates = [
   },
   {
     title: "Arq. Minimalista",
-    category: "Portfolio / Studio",
+    category: "Portfolio / Estudio",
     image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop",
     link: "#"
   },
@@ -26,7 +30,7 @@ const templates = [
   },
   {
     title: "Estate Prime",
-    category: "Real Estate",
+    category: "Inmobiliaria",
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2000&auto=format&fit=crop",
     link: "#"
   },
@@ -43,6 +47,60 @@ const templates = [
     link: "#"
   }
 ];
+
+const templates_en = [
+  {
+    title: "Justice & Law",
+    category: "Specialty: Legal",
+    images: [
+        "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1589391886645-d51941baf7fb?q=80&w=800&auto=format&fit=crop"
+    ],
+    link: "#",
+    isSpecial: true
+  },
+  {
+    title: "Minimalist Arch.",
+    category: "Portfolio / Studio",
+    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    title: "Dr. Office",
+    category: "Health / Booking",
+    image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=2000&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    title: "Estate Prime",
+    category: "Real Estate",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2000&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    title: "Resto Bar",
+    category: "Gastronomy",
+    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    title: "Gym Power",
+    category: "Fitness / Landing",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop",
+    link: "#"
+  }
+];
+
+const templates = lang === 'en' ? templates_en : templates_es;
+
+const sectionTag = lang === 'en' ? "RESOURCE LIBRARY" : "LIBRERÍA DE RECURSOS";
+const title1 = lang === 'en' ? "Solutions by" : "Soluciones por";
+const title2 = lang === 'en' ? "Industry." : "Industria.";
+const viewCatalog = lang === 'en' ? "View full catalog ->" : "Ver catálogo completo ->";
+const designsCount = lang === 'en' ? "15+ Designs" : "15+ Diseños";
+
 ---
 
 <section id="soluciones" class="py-24 bg-black relative border-t border-white/5">
@@ -56,16 +114,16 @@ const templates = [
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
                 <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">
-                    /// LIBRERÍA DE RECURSOS
+                    /// {sectionTag}
                 </span>
                 <h3 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
-                    Soluciones por <br class="hidden md:block" />
-                    <span class="text-glow-pop">Industria.</span>
+                    {title1} <br class="hidden md:block" />
+                    <span class="text-glow-pop">{title2}</span>
                 </h3>
             </div>
             
             <a href="#" class="text-sm font-bold text-white border-b border-white/20 pb-1 hover:text-[--color-primary] hover:border-[--color-primary] transition-colors mb-2">
-                Ver catálogo completo ->
+                {viewCatalog}
             </a>
         </div>
 
@@ -87,14 +145,14 @@ const templates = [
                                 ))}
                             </div>
                             <div class="absolute top-3 right-3 z-20 
-                                    bg-black/90 backdrop-blur-md border border-[--color-primary]/50 
-                                    text-white text-[10px] font-bold px-3 py-1.5 rounded-full 
-                                    shadow-[0_0_10px_rgba(0,0,0,0.5)] uppercase tracking-wider
-                                    group-hover:bg-[--color-primary] 
-                                    group-hover:text-white 
-                                    group-hover:border-[--color-primary]
-                                    transition-all duration-300">
-                                15+ Diseños
+                                        bg-black/90 backdrop-blur-md border border-[--color-primary]/50 
+                                        text-white text-[10px] font-bold px-3 py-1.5 rounded-full 
+                                        shadow-[0_0_10px_rgba(0,0,0,0.5)] uppercase tracking-wider
+                                        group-hover:bg-[--color-primary] 
+                                        group-hover:text-white 
+                                        group-hover:border-[--color-primary]
+                                        transition-all duration-300">
+                                {designsCount}
                             </div>
                         </div>
                     ) : (

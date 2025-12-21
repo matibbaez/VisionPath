@@ -1,23 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import Services from '../components/Services.astro';
-import Projects from '../components/Projects.astro';
-import TechStack from '../components/TechStack.astro';
-import Templates from '../components/Templates.astro';
-import Footer from '../components/Footer.astro';
+// src/pages/index.astro
+// Este archivo solo sirve para redirigir al idioma por defecto
+return Astro.redirect('/es');
 ---
-
-<Layout title="VisionPath | Agencia Digital">
-	<Navbar />
-	<main>
-		<Hero />
-		<Services />
-        <TechStack />
-        <Projects />
-        <Templates />
-        
-        <Footer />
-	</main>
-</Layout>

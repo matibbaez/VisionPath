@@ -1,131 +1,69 @@
 ---
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <section id="home" class="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden bg-black selection:bg-[--color-primary] selection:text-white">
     
-    <div class="absolute inset-0 z-20 opacity-[0.05] pointer-events-none mix-blend-overlay" 
-         style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');">
-    </div>
+    <div class="absolute inset-0 z-20 opacity-[0.04] pointer-events-none mix-blend-overlay" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] md:w-[800px] h-[300px] sm:h-[500px] md:h-[800px] bg-[--color-primary] opacity-15 blur-[80px] md:blur-[120px] rounded-full pointer-events-none z-0 animate-pulse-slow"></div>
 
-    <div class="absolute inset-0 z-0 perspective-grid opacity-40 md:opacity-30 will-change-transform">
-        <div class="grid-lines"></div>
-    </div>
-
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[1200px] h-[350px] md:h-[800px] bg-[--color-primary] opacity-25 md:opacity-15 blur-[90px] md:blur-[100px] rounded-full pointer-events-none z-0 animate-pulse-slow will-change-transform"></div>
-
-
-    <div class="relative z-30 w-full px-4 flex flex-col items-center justify-center h-full">
+    <div class="relative z-30 w-full px-4 sm:px-6 flex flex-col items-center justify-center h-full py-20">
         
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-300 mb-6 opacity-0 animate-fade-in-up">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6600] opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-[#FF6600]"></span>
+        <div class="inline-flex items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6 md:mb-10 opacity-0 animate-fade-in-up">
+            <span class="flex h-1.5 w-1.5 sm:h-2 sm:w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500"></span>
             </span>
-            <span class="tracking-widest">SYSTEM STATUS: ONLINE</span>
+            <span class="text-[10px] sm:text-xs font-mono text-gray-300 tracking-widest uppercase">
+                {t('hero.badge')}
+            </span>
         </div>
 
-        <div class="relative w-full max-w-[90rem] mx-auto text-center">
-            <div class="grid place-items-center">
-                
-                <h1 aria-hidden="true" 
-                    class="col-start-1 row-start-1 font-black tracking-tighter leading-[0.9] text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] text-transparent uppercase select-none pointer-events-none z-0 transform translate-y-2 md:translate-y-4 opacity-30"
-                    style="-webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.25);">
-                    <span class="block">We Build</span>
-                    <span class="block">The Future</span>
-                </h1>
-
-                <h1 class="col-start-1 row-start-1 font-black tracking-tighter leading-[0.9] text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] text-white uppercase z-10 mix-blend-normal">
-                    <span class="block animate-slide-up opacity-0 will-change-transform" style="animation-delay: 0.1s;">We Build</span>
-                    <span class="block text-glow-pop animate-slide-up opacity-0 pb-2 md:pb-8 will-change-transform" style="animation-delay: 0.3s;">
-                        The Future
-                    </span>
-                </h1>
-            </div>
+        <div class="relative w-full max-w-[90rem] mx-auto text-center z-10">
+            <h1 class="font-black tracking-tighter leading-[0.9] uppercase mix-blend-normal flex flex-col items-center gap-1 sm:gap-2 md:gap-4">
+                <span class="block text-4xl sm:text-6xl md:text-8xl lg:text-[9rem] xl:text-[10rem] text-white opacity-0 animate-slide-up" style="animation-delay: 0.1s;">
+                    {t('hero.weare')}
+                </span>
+                <span class="block text-[13vw] sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] text-glow-pop opacity-0 animate-slide-up pb-2 md:pb-4" style="animation-delay: 0.3s;">
+                    VisionPath
+                </span>
+            </h1>
         </div>
 
-        <p class="mt-8 md:mt-10 text-xl text-gray-400 max-w-[85%] md:max-w-2xl mx-auto font-light leading-relaxed text-center animate-fade-in opacity-0" style="animation-delay: 0.6s;">
-            El futuro no se espera, <span class="text-white font-bold">se programa</span>.
-            <br class="hidden md:block" />
-            Convertimos tu visión en una <span class="text-white font-medium border-b border-[--color-primary]/30 pb-0.5">ventaja injusta</span> frente a tu competencia.
+        <p class="mt-6 md:mt-10 text-base sm:text-lg md:text-2xl text-gray-400 max-w-xs sm:max-w-2xl mx-auto font-light leading-relaxed text-center opacity-0 animate-fade-in" style="animation-delay: 0.6s;">
+            {t('hero.subtitle')}
+            <span class="block mt-2 text-white font-medium">{t('hero.subtitle2')}</span>
         </p>
 
-        <div class="mt-8 md:mt-7 flex flex-col sm:flex-row gap-3 w-full sm:w-auto px-6 sm:px-0 animate-fade-in opacity-0" style="animation-delay: 0.8s;">
-            <a href="#proyectos" class="group relative px-6 py-2.5 bg-white text-black font-bold text-sm rounded-full overflow-hidden transition-all hover:scale-105 w-full sm:w-auto text-center justify-center flex shadow-lg shadow-white/5">
-                <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-200 via-white to-gray-200 opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                <span class="relative flex items-center gap-2">
-                    Ver Trabajo
-                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </span>
+        <div class="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0 opacity-0 animate-fade-in" style="animation-delay: 0.8s;">
+            <a href="#proyectos" class="group relative px-8 py-3.5 sm:py-4 bg-white text-black font-bold text-sm md:text-base rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-center w-full sm:w-auto flex justify-center items-center">
+                <span class="relative z-10">{t('hero.cta1')}</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </a>
             
-            <a href="#contacto" class="px-6 py-2.5 rounded-full border border-white/20 text-white font-medium text-sm hover:bg-white/5 hover:border-white/40 transition-all backdrop-blur-sm w-full sm:w-auto text-center">
-                Contactar
+            <a href="https://wa.me/5491100000000" target="_blank" class="px-8 py-3.5 sm:py-4 rounded-full border border-white/20 text-white font-medium text-sm md:text-base hover:bg-white/5 hover:border-white/50 transition-all backdrop-blur-sm flex items-center justify-center gap-2 group w-full sm:w-auto text-center">
+                <span>{t('hero.cta2')}</span>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
         </div>
     </div>
 
-    <div class="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in opacity-0" style="animation-delay: 1.2s;">
-        <div class="flex flex-col items-center gap-2 animate-bounce opacity-50">
-            <span class="text-[8px] md:text-[8px] uppercase tracking-[0.2em] text-white/70">Scroll</span>
-            <div class="w-[1px] h-8 md:h-16 bg-gradient-to-b from-white via-white/50 to-transparent"></div>
-        </div>
+    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in hidden sm:flex flex-col items-center gap-3" style="animation-delay: 1.5s;">
+        <span class="text-[9px] uppercase tracking-[0.2em] text-white/40">{t('hero.scroll')}</span>
+        <div class="w-[1px] h-10 md:h-12 bg-gradient-to-b from-white/20 via-white/50 to-transparent"></div>
     </div>
-
-    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/80 to-transparent z-20 pointer-events-none"></div>
-
 </section>
 
 <style>
-    /* OPTIMIZACIÓN: will-change ayuda al navegador a saber qué animar */
-    .will-change-transform {
-        will-change: transform, opacity;
-    }
-
-    /* KEYFRAMES */
-    @keyframes slideUp {
-        from { transform: translateY(30px) scale(0.95); opacity: 0; }
-        to { transform: translateY(0) scale(1); opacity: 1; }
-    }
-    
-    @keyframes fadeIn { 
-        from { opacity: 0; } 
-        to { opacity: 1; } 
-    }
-    
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulseSlow {
-        0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1); }
-        50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-    /* CLASES DE UTILIDAD PARA ANIMACIONES */
-    .animate-slide-up { animation: slideUp 1s cubic-bezier(0.2, 1, 0.2, 1) forwards; }
+    /* (Mantén los mismos estilos CSS que ya tenías en Hero) */
+    .animate-slide-up { animation: slideUp 1.2s cubic-bezier(0.2, 1, 0.2, 1) forwards; }
     .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
     .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; animation-delay: 0.5s; }
-    .animate-pulse-slow { animation: pulseSlow 6s ease-in-out infinite; }
-    
-    /* GRID 3D */
-    .perspective-grid {
-        transform: perspective(800px) rotateX(60deg) translateY(-50px) translateZ(-200px);
-        overflow: hidden;
-    }
-    .grid-lines {
-        width: 300%;
-        height: 300%;
-        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-        background-size: 50px 50px;
-        transform-origin: center;
-        animation: moveGrid 20s linear infinite;
-        mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
-        margin-left: -100%;
-        /* Optimización extra para la grilla infinita */
-        will-change: transform; 
-    }
-    @keyframes moveGrid {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(50px); }
-    }
+    .animate-pulse-slow { animation: pulseSlow 8s ease-in-out infinite; }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; filter: blur(10px); } to { transform: translateY(0); opacity: 1; filter: blur(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulseSlow { 0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.2); } }
 </style>

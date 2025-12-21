@@ -1,0 +1,118 @@
+---
+import { getLangFromUrl } from '../utils/i18n';
+const lang = getLangFromUrl(Astro.url);
+
+const testimonials_es = [
+  {
+    quote: "La implementación de ReclamARTe cambió radicalmente nuestra gestión interna. Pasamos de expedientes en papel a un flujo 100% digital en semanas.",
+    author: "Dr. Marcelo Funes",
+    role: "Socio Fundador",
+    company: "Estudio Funes & Asoc.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    quote: "Necesitábamos escalar ReclamaYA para soportar miles de productores simultáneos. La arquitectura que diseñó VisionPath es simplemente blindada.",
+    author: "Ing. Sofia H.",
+    role: "CTO",
+    company: "Grupo Asegurador",
+    image: "https://images.unsplash.com/photo-1573496359-701422811285?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    quote: "Entendieron la estética de lujo que buscábamos. No es solo una web, es nuestra carta de presentación ante clientes internacionales.",
+    author: "Arq. Tomás V.",
+    role: "Director Creativo",
+    company: "Vanguard Studio",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+  }
+];
+
+const testimonials_en = [
+  {
+    quote: "Implementing ReclamARTe radically changed our internal management. We went from paper files to a 100% digital workflow in weeks.",
+    author: "Dr. Marcelo Funes",
+    role: "Founding Partner",
+    company: "Funes & Assoc. Law",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    quote: "We needed to scale ReclamaYA to support thousands of simultaneous producers. The architecture VisionPath designed is simply bulletproof.",
+    author: "Eng. Sofia H.",
+    role: "CTO",
+    company: "Insurance Group",
+    image: "https://images.unsplash.com/photo-1573496359-701422811285?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    quote: "They understood the luxury aesthetic we were looking for. It's not just a website, it's our letter of introduction to international clients.",
+    author: "Arch. Tomás V.",
+    role: "Creative Director",
+    company: "Vanguard Studio",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+  }
+];
+
+const testimonials = lang === 'en' ? testimonials_en : testimonials_es;
+
+const sectionLabel = lang === 'en' ? "TRUST & REPUTATION" : "CONFIANZA Y REPUTACIÓN";
+const title1 = lang === 'en' ? "Don't take our word for it." : "No creas en nuestra palabra.";
+const title2 = lang === 'en' ? "Trust our results." : "Cree en nuestros resultados.";
+const retentionText = lang === 'en' ? "Retention Rate" : "Tasa de Retención";
+const logosTitle = lang === 'en' ? "Companies that trust VisionPath" : "Empresas que confían en VisionPath";
+---
+
+<section class="py-24 md:py-32 bg-black relative overflow-hidden border-t border-white/5">
+    
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[--color-primary]/50 to-transparent"></div>
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white opacity-[0.02] blur-[100px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <div class="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-end gap-6">
+            <div>
+                <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">
+                    /// {sectionLabel}
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-2xl">
+                    {title1} <br />
+                    <span class="text-glow-pop">{title2}</span>
+                </h2>
+            </div>
+            
+            <div class="hidden md:block text-right">
+                <p class="text-3xl font-bold text-white">100%</p>
+                <p class="text-xs font-mono text-gray-500 uppercase tracking-wider">{retentionText}</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {testimonials.map((item) => (
+                <div class="group relative p-8 rounded-3xl bg-[#0A0A0A] border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2">
+                    <span class="absolute top-4 right-6 text-8xl font-serif text-white/5 group-hover:text-[--color-primary]/10 transition-colors pointer-events-none">"</span>
+
+                    <div class="relative z-10 flex flex-col h-full justify-between gap-8">
+                        <p class="text-lg text-gray-300 font-light leading-relaxed">"{item.quote}"</p>
+
+                        <div class="flex items-center gap-4">
+                            <img src={item.image} alt={item.author} class="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all border border-white/10" />
+                            <div>
+                                <h4 class="text-white font-bold text-sm">{item.author}</h4>
+                                <div class="text-xs font-mono text-[--color-primary]">{item.role}</div>
+                                <div class="text-xs text-gray-600 uppercase tracking-wide mt-0.5">{item.company}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <div class="mt-20 pt-10 border-t border-white/5 flex flex-col items-center">
+            <p class="text-xs font-mono text-gray-600 uppercase tracking-widest mb-8">{logosTitle}</p>
+            
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-30 grayscale hover:grayscale-0 hover:opacity-70 transition-all duration-500">
+                <svg class="h-8" viewBox="0 0 100 30" fill="currentColor"><path d="M10,15 L20,5 L30,15 L20,25 Z M40,5 H90 V25 H40 Z" /></svg>
+                <svg class="h-8" viewBox="0 0 100 30" fill="currentColor"><circle cx="15" cy="15" r="10" /><rect x="35" y="10" width="50" height="10" /></svg>
+                <svg class="h-8" viewBox="0 0 100 30" fill="currentColor"><rect x="10" y="5" width="20" height="20" /><rect x="40" y="5" width="20" height="20" /><rect x="70" y="5" width="20" height="20" /></svg>
+                <svg class="h-8 hidden sm:block" viewBox="0 0 100 30" fill="currentColor"><path d="M10,25 L25,5 L40,25 M50,15 H90" stroke="currentColor" stroke-width="3" /></svg>
+            </div>
+        </div>
+    </div>
+</section>

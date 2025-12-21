@@ -1,33 +1,77 @@
 ---
-const projects = [
+import { getLangFromUrl } from '../utils/i18n';
+const lang = getLangFromUrl(Astro.url);
+
+// Textos en ESPAÑOL
+const projects_es = [
   {
-    title: "Neon Banking App",
-    category: "Fintech / Mobile",
-    description: "Rediseño completo de la experiencia bancaria. Dashboard en tiempo real y transacciones instantáneas.",
-    tags: ["React Native", "Supabase", "Node.js"],
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
+    title: "ReclamARTe",
+    category: "LegalTech / Gestión",
+    description: "Sistema integral de expedientes. Trazabilidad total mediante ID único de seguimiento, permitiendo a los abogados actuar y modificar estados en tiempo real frente al cliente.",
+    tags: ["Supabase", "React", "Real-Time"],
+    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1600&auto=format&fit=crop",
     link: "#",
-    color: "from-orange-500/10 to-red-500/10"
+    color: "from-blue-600/20 to-cyan-500/20"
   },
   {
-    title: "Orbital Dashboard",
-    category: "SaaS / Analytics",
-    description: "Plataforma B2B para visualización de Big Data. Gráficos interactivos con D3.js y manejo de millones de registros.",
-    tags: ["Astro", "D3.js", "Python"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    title: "ReclamaYA",
+    category: "InsurTech / Referidos",
+    description: "Plataforma escalable de gestión de reclamos. Arquitectura multinivel para organizadores, brokers y productores con dashboard de referidos automatizado.",
+    tags: ["Node.js", "PostgreSQL", "Analytics"],
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop",
     link: "#",
-    color: "from-blue-500/10 to-cyan-500/10"
+    color: "from-emerald-600/20 to-teal-500/20"
   },
   {
-    title: "Cyber Commerce",
-    category: "E-Commerce",
-    description: "Tienda online headless con carga instantánea (0.4s). Integración con Stripe y gestión de inventario automatizada.",
-    tags: ["Next.js", "Stripe", "OpenAI"],
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
+    title: "Estudio Legal & Asoc.",
+    category: "High-End Corporate",
+    description: "Identidad digital para firma de abogados líder. Sitio institucional ultrarrápido (0.4s), optimizado para captación de clientes y posicionamiento local.",
+    tags: ["Astro", "SEO Técnico", "Minimal UI"],
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
     link: "#",
-    color: "from-emerald-500/10 to-teal-500/10"
+    color: "from-slate-600/20 to-gray-500/20"
   }
 ];
+
+// Textos en INGLÉS
+const projects_en = [
+  {
+    title: "ReclamARTe",
+    category: "LegalTech / Management",
+    description: "Comprehensive case file system. Total traceability via unique tracking IDs, allowing lawyers to act and modify statuses in real-time facing the client.",
+    tags: ["Supabase", "React", "Real-Time"],
+    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1600&auto=format&fit=crop",
+    link: "#",
+    color: "from-blue-600/20 to-cyan-500/20"
+  },
+  {
+    title: "ReclamaYA",
+    category: "InsurTech / Referrals",
+    description: "Scalable claims management platform. Multi-level architecture for organizers, brokers, and producers with automated referral dashboards.",
+    tags: ["Node.js", "PostgreSQL", "Analytics"],
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop",
+    link: "#",
+    color: "from-emerald-600/20 to-teal-500/20"
+  },
+  {
+    title: "Legal Firm & Assoc.",
+    category: "High-End Corporate",
+    description: "Digital identity for a leading law firm. Ultra-fast institutional site (0.4s), optimized for client acquisition and local positioning.",
+    tags: ["Astro", "Technical SEO", "Minimal UI"],
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+    link: "#",
+    color: "from-slate-600/20 to-gray-500/20"
+  }
+];
+
+// Selección de idioma
+const projects = lang === 'en' ? projects_en : projects_es;
+
+// Títulos dinámicos
+const sectionLabel = lang === 'en' ? "CASE STUDIES" : "CASOS DE ÉXITO";
+const title1 = lang === 'en' ? "Engineering that" : "Ingeniería que";
+const title2 = lang === 'en' ? "transforms businesses." : "transforma negocios.";
+const btnText = lang === 'en' ? "View Case" : "Ver Caso";
 ---
 
 <section id="proyectos" class="relative py-24 md:py-32 bg-black">
@@ -36,64 +80,60 @@ const projects = [
         
         <div class="mb-16 md:mb-24">
             <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">
-                /// PORTFOLIO DE AGENCIA
+                /// {sectionLabel}
             </span>
             <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
-                Resultados que <br/>
-                <span class="text-glow-pop">definen industrias.</span>
+                {title1} <br/>
+                <span class="text-glow-pop">{title2}</span>
             </h2>
         </div>
 
         <div class="flex flex-col gap-8 md:gap-12 pb-20">
-            {projects.map((project, index) => (
-                
+            {projects.map((project) => (
                 <article class="sticky top-24 md:top-32 min-h-[500px] w-full rounded-[2rem] bg-[#0A0A0A] border border-white/10 overflow-hidden shadow-2xl group flex flex-col md:grid md:grid-cols-2">
                     
                     <div class="relative z-20 p-6 md:p-12 flex flex-col justify-between order-2 md:order-1 h-full">
-                        
                         <div class={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}></div>
 
                         <div class="relative z-10">
                             <div class="flex items-center gap-3 mb-4 md:mb-6">
                                 <span class="w-1.5 h-1.5 rounded-full bg-[--color-primary] animate-pulse"></span>
-                                <span class="text-xs font-mono text-gray-500 tracking-wider uppercase">{project.category}</span>
+                                <span class="text-xs font-mono text-gray-500 tracking-wider uppercase group-hover:text-white/70 transition-colors">{project.category}</span>
                             </div>
                             
-                            <h3 class="text-2xl md:text-4xl font-bold text-white leading-tight mb-4">
+                            <h3 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-4 tracking-tight">
                                 {project.title}
                             </h3>
                             
-                            <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-md">
+                            <p class="text-gray-400 text-sm md:text-lg leading-relaxed max-w-md group-hover:text-gray-300 transition-colors">
                                 {project.description}
                             </p>
                         </div>
 
                         <div class="relative z-10 mt-8 md:mt-0 pt-6 border-t border-white/5 md:border-0 flex flex-col items-start gap-6">
-                             
                             <div class="flex flex-wrap gap-2">
                                 {project.tags.map(tag => (
-                                    <span class="px-3 py-1 rounded-md border border-white/5 bg-white/5 text-xs text-gray-400">
+                                    <span class="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-gray-300 backdrop-blur-sm">
                                         {tag}
                                     </span>
                                 ))}
                             </div>
 
                             <a href={project.link} class="group/btn inline-flex items-center gap-3 text-white text-sm font-bold tracking-wide uppercase border-b border-white/20 pb-1 hover:border-[--color-primary] hover:text-[--color-primary] transition-all">
-                                Ver Proyecto
+                                {btnText}
                                 <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </a>
                         </div>
                     </div>
     
                     <div class="relative h-64 md:h-full w-full overflow-hidden order-1 md:order-2 border-b md:border-b-0 md:border-l border-white/5">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
                         <img 
                             src={project.image} 
                             alt={project.title}
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0"
                         />
                     </div>
-
                 </article>
             ))}
         </div>
