@@ -1,0 +1,69 @@
+---
+// src/components/CookieBanner.astro
+---
+
+<div id="cookie-banner" class="fixed bottom-6 left-6 z-[100] max-w-sm w-[calc(100%-3rem)] translate-y-[200%] transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+    <div class="bg-[#050505]/90 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-[0_0_40px_-10px_rgba(0,0,0,0.5)]">
+        <div class="flex items-start gap-4 mb-4">
+            <div class="p-3 bg-white/5 rounded-full border border-white/10 text-[--color-primary]">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-base mb-1">Privacidad</h4>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    Usamos cookies mínimas para entender cómo interactuás con VisionPath y mejorar nuestra ingeniería.
+                </p>
+            </div>
+        </div>
+        
+        <div class="flex gap-3">
+            <button id="accept-cookies" class="flex-1 bg-white text-black text-xs font-bold py-3 rounded-xl hover:scale-[1.02] active:scale-95 transition-all">
+                ACEPTAR
+            </button>
+            <button id="reject-cookies" class="px-6 text-xs font-bold text-gray-500 hover:text-white border border-transparent hover:border-white/10 rounded-xl transition-all">
+                CERRAR
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    import { inject } from '@vercel/analytics';
+
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+
+    // Función para iniciar Analytics (Solo si acepta)
+    function startAnalytics() {
+        console.log('VisionPath: Analytics Started 🚀');
+        inject(); // Esto inicia Vercel Analytics
+    }
+
+    // Lógica del Banner
+    if (!localStorage.getItem('visionpath_consent')) {
+        // Si no hay decisión guardada, mostramos el banner tras 2 segundos
+        setTimeout(() => {
+            banner?.classList.remove('translate-y-[200%]');
+        }, 2500);
+    } else {
+        // Si ya aceptó antes, iniciamos analytics directo
+        if (localStorage.getItem('visionpath_consent') === 'accepted') {
+            startAnalytics();
+        }
+    }
+
+    // Botón Aceptar
+    acceptBtn?.addEventListener('click', () => {
+        localStorage.setItem('visionpath_consent', 'accepted');
+        banner?.classList.add('translate-y-[200%]'); // Ocultar banner
+        startAnalytics(); // Iniciar tracking
+    });
+
+    // Botón Rechazar/Cerrar
+    rejectBtn?.addEventListener('click', () => {
+        localStorage.setItem('visionpath_consent', 'rejected');
+        banner?.classList.add('translate-y-[200%]');
+        // No iniciamos inject()
+    });
+</script>

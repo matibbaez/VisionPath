@@ -1,0 +1,148 @@
+---
+import { getLangFromUrl, useTranslations } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const texts = {
+  es: {
+    subtitle: "Hablemos de negocios",
+    titleStart: "Iniciá tu", 
+    titleHighlight: "Proyecto.", 
+    desc: "Contanos tu visión. Te responderemos con una propuesta estratégica en 24hs.",
+    name: "Tu Nombre",
+    email: "Tu Email",
+    message: "Detalles del proyecto...",
+    btn: "ENVIAR PROPUESTA",
+    sending: "Enviando...",
+    success: "¡Mensaje enviado! Te contactaremos pronto.",
+    error: "Hubo un error. Por favor escribinos por WhatsApp."
+  },
+  en: {
+    subtitle: "Let's talk business",
+    titleStart: "Start your",
+    titleHighlight: "Project.",
+    desc: "Tell us your vision. We'll reply with a strategic proposal within 24hrs.",
+    name: "Your Name",
+    email: "Your Email",
+    message: "Project details...",
+    btn: "SEND PROPOSAL",
+    sending: "Sending...",
+    success: "Message sent! We'll be in touch soon.",
+    error: "Error occurred. Please message us on WhatsApp."
+  }
+};
+
+const content = texts[lang];
+---
+
+<section id="contacto" class="relative py-24 bg-black overflow-hidden border-t border-white/5">
+    
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[--color-primary] opacity-[0.03] blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        <div>
+            <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">/// {content.subtitle}</span>
+            
+            <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6 leading-tight">
+                {content.titleStart} <br />
+                <span class="text-glow-pop">{content.titleHighlight}</span>
+            </h2>
+
+            <p class="text-lg text-gray-400 font-light leading-relaxed mb-10 max-w-lg">
+                {content.desc}
+            </p>
+
+            <div class="flex flex-col gap-6">
+                <a href="mailto:mfbcaneda@gmail.com" class="flex items-center gap-4 text-white hover:text-[--color-primary] transition-colors group">
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[--color-primary]/50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <span class="text-lg">mfbcaneda@gmail.com</span>
+                </a>
+                
+                <a href="https://wa.me/5491100000000" target="_blank" class="flex items-center gap-4 text-white hover:text-[--color-primary] transition-colors group">
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[--color-primary]/50 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    </div>
+                    <span class="text-lg">WhatsApp Directo</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="relative">
+            <form 
+                action="https://formspree.io/f/xjgbpvdj" 
+                method="POST" 
+                id="contact-form"
+                class="bg-white/5 border border-white/10 p-8 md:p-10 rounded-3xl backdrop-blur-md relative z-10"
+            >
+                <div class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-xs font-mono text-gray-500 uppercase tracking-wider mb-2">{content.name}</label>
+                        <input type="text" name="name" id="name" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[--color-primary] transition-colors placeholder-gray-700" placeholder="John Doe" />
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs font-mono text-gray-500 uppercase tracking-wider mb-2">{content.email}</label>
+                        <input type="email" name="email" id="email" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[--color-primary] transition-colors placeholder-gray-700" placeholder="john@company.com" />
+                    </div>
+                    <div>
+                        <label for="message" class="block text-xs font-mono text-gray-500 uppercase tracking-wider mb-2">{content.message}</label>
+                        <textarea name="message" id="message" rows="4" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-[--color-primary] transition-colors placeholder-gray-700 resize-none"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all active:scale-[0.98] mt-4 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                        {content.btn}
+                    </button>
+                </div>
+
+                <p id="form-status" class="mt-4 text-center text-sm font-medium hidden"></p>
+            </form>
+            
+            <div class="absolute inset-0 bg-gradient-to-tr from-[--color-primary] to-purple-500 opacity-10 blur-2xl rounded-3xl -z-10 transform translate-x-4 translate-y-4"></div>
+        </div>
+
+    </div>
+</section>
+
+<script is:inline define:vars={{ content }}>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const btn = document.getElementById('submit-btn');
+
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        
+        btn.disabled = true;
+        btn.innerHTML = content.sending;
+        btn.style.opacity = "0.7";
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                status.innerHTML = content.success;
+                status.classList.remove('hidden', 'text-red-500');
+                status.classList.add('text-emerald-400');
+                form.reset();
+                btn.innerHTML = content.btn;
+            } else {
+                throw new Error('Error en el envío');
+            }
+        } catch (error) {
+            status.innerHTML = content.error;
+            status.classList.remove('hidden', 'text-emerald-400');
+            status.classList.add('text-red-500');
+            btn.innerHTML = content.btn;
+        } finally {
+            btn.disabled = false;
+            btn.style.opacity = "1";
+        }
+    });
+</script>

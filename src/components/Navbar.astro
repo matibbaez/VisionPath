@@ -7,14 +7,17 @@ import { getLangFromUrl, useTranslations } from '../utils/i18n';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Detección de página
+// --- CORRECCIÓN AQUÍ ---
 const currentPath = Astro.url.pathname;
-const isCaseStudy = currentPath.includes('/case/');
-const isHome = !isCaseStudy;
+
+// Detectamos si estamos en CUALQUIER página interna (Cases o Legales)
+const isInternalPage = currentPath.includes('/case/') || currentPath.includes('/legal/');
+const isHome = !isInternalPage;
 
 // Generador de links
 const getLink = (hash: string) => {
   if (isHome) return hash; 
+  // Si es interna, devolvemos la ruta completa para volver al inicio
   return `/${lang}/${hash}`;
 };
 

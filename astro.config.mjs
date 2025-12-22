@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
-  site: 'https://visionpath-agency.vercel.app', 
-  
+  site: 'https://visionpath-agency.vercel.app',
+
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],
@@ -11,7 +13,10 @@ export default defineConfig({
         prefixDefaultLocale: true 
     }
   },
+
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+
+  integrations: [sitemap()]
 });

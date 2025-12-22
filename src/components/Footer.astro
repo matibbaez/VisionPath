@@ -26,7 +26,7 @@ const socials = [
 ];
 ---
 
-<footer id="contacto" class="relative pt-24 md:pt-32 pb-10 overflow-hidden bg-black text-white selection:bg-[--color-primary] selection:text-white border-t border-white/5">
+<footer class="relative pt-24 md:pt-32 pb-10 overflow-hidden bg-black text-white selection:bg-[--color-primary] selection:text-white border-t border-white/5">
     
     <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[--color-primary] opacity-15 blur-[100px] rounded-full pointer-events-none z-0"></div>
     
@@ -109,6 +109,25 @@ const socials = [
         </div>
 
         <div class="flex flex-col items-center md:items-end text-[10px] font-mono text-gray-600 uppercase tracking-wider">
+    
+            <div class="flex gap-4 mb-2">
+                <a 
+                    href={lang === 'en' ? '/en/legal/privacy' : '/es/legal/privacidad'} 
+                    class="hover:text-white transition-colors"
+                >
+                    {lang === 'en' ? 'Privacy' : 'Privacidad'}
+                </a>
+
+                <span class="text-white/10">|</span>
+
+                <a 
+                    href={lang === 'en' ? '/en/legal/terms' : '/es/legal/terminos'} 
+                    class="hover:text-white transition-colors"
+                >
+                    {lang === 'en' ? 'Terms' : 'Términos'}
+                </a>
+            </div>
+            
             <span>© {currentYear} VisionPath Systems.</span>
             <span class="opacity-50">{t('footer.rights')}</span>
         </div>

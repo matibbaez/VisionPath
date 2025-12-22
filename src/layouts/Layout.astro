@@ -3,6 +3,7 @@
 import { getLangFromUrl } from '../utils/i18n';
 import { ClientRouter } from 'astro:transitions'; 
 import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
     title: string;
@@ -11,8 +12,6 @@ interface Props {
 const { title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 
-// Lógica para la imagen absoluta (Necesaria para WhatsApp/LinkedIn)
-// Si no hay dominio configurado aún, usa la ruta relativa, pero lo ideal es el dominio completo.
 const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString();
 ---
 
@@ -122,5 +121,6 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
             // Ejecutar en cada navegación
             document.addEventListener('astro:page-load', initLenis);
         </script>
+        <CookieBanner />
     </body>
 </html>
