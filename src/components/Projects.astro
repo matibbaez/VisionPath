@@ -1,73 +1,19 @@
 ---
 import { getLangFromUrl } from '../utils/i18n';
+import { projectsData } from '../data/projects'; // <--- Importamos los datos
+
 const lang = getLangFromUrl(Astro.url);
 
-// Textos en ESPAÑOL
-const projects_es = [
-  {
-    title: "ReclamARTe",
-    category: "LegalTech / Gestión",
-    description: "Sistema integral de expedientes. Trazabilidad total mediante ID único de seguimiento, permitiendo a los abogados actuar y modificar estados en tiempo real frente al cliente.",
-    tags: ["Supabase", "React", "Real-Time"],
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1600&auto=format&fit=crop",
-    link: "#",
-    color: "from-blue-600/20 to-cyan-500/20"
-  },
-  {
-    title: "ReclamaYA",
-    category: "InsurTech / Referidos",
-    description: "Plataforma escalable de gestión de reclamos. Arquitectura multinivel para organizadores, brokers y productores con dashboard de referidos automatizado.",
-    tags: ["Node.js", "PostgreSQL", "Analytics"],
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop",
-    link: "#",
-    color: "from-emerald-600/20 to-teal-500/20"
-  },
-  {
-    title: "Estudio Legal & Asoc.",
-    category: "High-End Corporate",
-    description: "Identidad digital para firma de abogados líder. Sitio institucional ultrarrápido (0.4s), optimizado para captación de clientes y posicionamiento local.",
-    tags: ["Astro", "SEO Técnico", "Minimal UI"],
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-    link: "#",
-    color: "from-slate-600/20 to-gray-500/20"
-  }
-];
+// Mapeamos los datos según el idioma
+const projects = projectsData.map(p => ({
+    ...p,
+    title: p.title[lang],
+    category: p.category[lang],
+    description: p.description[lang],
+    // Generamos el link dinámico
+    link: `/${lang}/case/${p.id}` 
+}));
 
-// Textos en INGLÉS
-const projects_en = [
-  {
-    title: "ReclamARTe",
-    category: "LegalTech / Management",
-    description: "Comprehensive case file system. Total traceability via unique tracking IDs, allowing lawyers to act and modify statuses in real-time facing the client.",
-    tags: ["Supabase", "React", "Real-Time"],
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1600&auto=format&fit=crop",
-    link: "#",
-    color: "from-blue-600/20 to-cyan-500/20"
-  },
-  {
-    title: "ReclamaYA",
-    category: "InsurTech / Referrals",
-    description: "Scalable claims management platform. Multi-level architecture for organizers, brokers, and producers with automated referral dashboards.",
-    tags: ["Node.js", "PostgreSQL", "Analytics"],
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop",
-    link: "#",
-    color: "from-emerald-600/20 to-teal-500/20"
-  },
-  {
-    title: "Legal Firm & Assoc.",
-    category: "High-End Corporate",
-    description: "Digital identity for a leading law firm. Ultra-fast institutional site (0.4s), optimized for client acquisition and local positioning.",
-    tags: ["Astro", "Technical SEO", "Minimal UI"],
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-    link: "#",
-    color: "from-slate-600/20 to-gray-500/20"
-  }
-];
-
-// Selección de idioma
-const projects = lang === 'en' ? projects_en : projects_es;
-
-// Títulos dinámicos
 const sectionLabel = lang === 'en' ? "CASE STUDIES" : "CASOS DE ÉXITO";
 const title1 = lang === 'en' ? "Engineering that" : "Ingeniería que";
 const title2 = lang === 'en' ? "transforms businesses." : "transforma negocios.";
@@ -75,7 +21,6 @@ const btnText = lang === 'en' ? "View Case" : "Ver Caso";
 ---
 
 <section id="proyectos" class="relative py-24 md:py-32 bg-black">
-  
     <div class="max-w-7xl mx-auto px-6">
         
         <div class="mb-16 md:mb-24">
@@ -128,11 +73,7 @@ const btnText = lang === 'en' ? "View Case" : "Ver Caso";
     
                     <div class="relative h-64 md:h-full w-full overflow-hidden order-1 md:order-2 border-b md:border-b-0 md:border-l border-white/5">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
-                        <img 
-                            src={project.image} 
-                            alt={project.title}
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0"
-                        />
+                        <img src={project.image} alt={project.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0" />
                     </div>
                 </article>
             ))}

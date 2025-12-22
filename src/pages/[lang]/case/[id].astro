@@ -1,0 +1,102 @@
+---
+// src/pages/[lang]/case/[id].astro
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { projectsData } from '../../../data/projects';
+
+// 1. Definimos la "forma" de un Proyecto para que TypeScript entienda
+interface Project {
+    id: string;
+    title: { es: string; en: string };
+    category: { es: string; en: string };
+    fullContent: { es: string; en: string };
+    tags: string[];
+    image: string;
+}
+
+// 2. Generamos las rutas. Usamos 'flatMap' que es más elegante y evita el error del array vacío []
+export async function getStaticPaths() {
+  return ['es', 'en'].flatMap(lang => 
+    projectsData.map(project => ({
+      params: { lang, id: project.id }, 
+      props: { project, lang } 
+    }))
+  );
+}
+
+// 3. Le decimos a Astro exactamente qué tipos de datos estamos recibiendo
+const { project, lang } = Astro.props as { project: Project, lang: 'es' | 'en' };
+
+// Textos traducidos simples para la UI de esta página
+const ui = {
+    es: { back: "← Volver al inicio", challenge: "El Desafío", solution: "La Solución", result: "El Resultado" },
+    en: { back: "← Back to home", challenge: "The Challenge", solution: "The Solution", result: "The Result" }
+};
+
+// Como ya le dijimos que 'lang' es 'es' o 'en', esta línea ya no da error
+const t = ui[lang];
+
+// Datos del proyecto actual
+const title = project.title[lang];
+const category = project.category[lang];
+const content = project.fullContent[lang];
+
+---
+
+<Layout title={`${title} | VisionPath Case Study`}>
+    <Navbar />
+    
+    <main class="bg-black min-h-screen pt-32 pb-20">
+        
+        <div class="max-w-4xl mx-auto px-6 mb-12">
+            <a href={`/${lang}/#proyectos`} class="text-sm font-mono text-gray-500 hover:text-white transition-colors mb-8 inline-block">
+                {t.back}
+            </a>
+            
+            <div class="flex items-center gap-3 mb-6">
+                <span class="px-3 py-1 rounded-full border border-[--color-primary]/30 bg-[--color-primary]/10 text-xs font-mono text-[--color-primary]">
+                    {category}
+                </span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mb-8">
+                {title}
+            </h1>
+        </div>
+
+        <div class="w-full h-[50vh] md:h-[70vh] relative overflow-hidden mb-20 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+            <img 
+                src={project.image} 
+                alt={title} 
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+            />
+        </div>
+
+        <div class="max-w-3xl mx-auto px-6 text-gray-300 leading-relaxed text-lg md:text-xl space-y-12">
+            
+            <div class="p-8 rounded-3xl bg-[#0A0A0A] border border-white/10">
+                <h3 class="text-2xl font-bold text-white mb-4">{t.challenge}</h3>
+                <p>{content}</p>
+                <p class="mt-4 opacity-50 italic">(Aquí podrías extender el texto en data/projects.ts para contar más detalles técnicos)</p>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-3">
+                    {/* Al tener la interfaz Project, TypeScript ya sabe que 'tag' es un string */}
+                    {project.tags.map((tag: string) => (
+                        <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-white">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <Footer />
+</Layout>

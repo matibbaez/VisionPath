@@ -24,7 +24,7 @@ export const languages = {
       'hero.cta2': 'Agendar Consulta',
       'hero.scroll': 'Scroll',
   
-      // Footer (ESTO ES LO QUE FALTABA)
+      // Footer 
       'footer.badge': 'Agenda Abierta',
       'footer.ready': '¿Listo para',
       'footer.scale': 'Escalar?',
@@ -50,7 +50,7 @@ export const languages = {
       'hero.cta2': 'Book a Call',
       'hero.scroll': 'Scroll',
   
-      // Footer (ESTO ES LO QUE FALTABA)
+      // Footer 
       'footer.badge': 'Open Availability',
       'footer.ready': 'Ready to',
       'footer.scale': 'Scale?',

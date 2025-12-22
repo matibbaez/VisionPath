@@ -4,22 +4,38 @@ import { getLangFromUrl } from '../utils/i18n';
 import '../styles/global.css';
 
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
-const lang = getLangFromUrl(Astro.url); // Detecta si es 'es' o 'en'
+const lang = getLangFromUrl(Astro.url);
+
+// Lógica para la imagen absoluta (Necesaria para WhatsApp/LinkedIn)
+// Si no hay dominio configurado aún, usa la ruta relativa, pero lo ideal es el dominio completo.
+const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString();
 ---
 
 <!doctype html>
 <html lang={lang} class="scroll-smooth overflow-x-hidden">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="VisionPath - Digital Product Studio" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/logoVP.png" />
-		<meta name="generator" content={Astro.generator} />
-		
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="VisionPath | Digital Product Studio. Transformamos complejidad en ventaja competitiva." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/logoVP.png" />
+        <meta name="generator" content={Astro.generator} />
+        
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="VisionPath | Digital Product Studio. Ingeniería de software high-end para marcas globales." />
+        <meta property="og:image" content={socialImage} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content="VisionPath | Digital Product Studio. Ingeniería de software high-end para marcas globales." />
+        <meta property="twitter:image" content={socialImage} />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -33,10 +49,10 @@ const lang = getLangFromUrl(Astro.url); // Detecta si es 'es' o 'en'
             .lenis.lenis-stopped { overflow: hidden; }
             .lenis.lenis-scrolling iframe { pointer-events: none; }
         </style>
-	</head>
+    </head>
     
-	<body class="font-sans bg-black text-white antialiased overflow-x-hidden w-full max-w-[100vw]">
-		<slot />
+    <body class="font-sans bg-black text-white antialiased overflow-x-hidden w-full max-w-[100vw]">
+        <slot />
 
         <script is:inline src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
         <script is:inline>
@@ -62,5 +78,5 @@ const lang = getLangFromUrl(Astro.url); // Detecta si es 'es' o 'en'
                 });
             });
         </script>
-	</body>
+    </body>
 </html>
