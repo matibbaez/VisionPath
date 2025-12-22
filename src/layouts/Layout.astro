@@ -1,6 +1,7 @@
 ---
 // src/layouts/Layout.astro
 import { getLangFromUrl } from '../utils/i18n';
+import { ClientRouter } from 'astro:transitions'; 
 import '../styles/global.css';
 
 interface Props {
@@ -49,34 +50,77 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
             .lenis.lenis-stopped { overflow: hidden; }
             .lenis.lenis-scrolling iframe { pointer-events: none; }
         </style>
+        <ClientRouter />
     </head>
     
     <body class="font-sans bg-black text-white antialiased overflow-x-hidden w-full max-w-[100vw]">
         <slot />
 
         <script is:inline src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
         <script is:inline>
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                orientation: 'vertical',
-                gestureOrientation: 'vertical',
-                smoothWheel: true,
-                wheelMultiplier: 1,
-                smoothTouch: false,
-                touchMultiplier: 2,
-            });
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    lenis.scrollTo(this.getAttribute('href'));
+            let lenis;
+            let animationId;
+
+            function initLenis() {
+                // 1. Limpieza
+                if (lenis) lenis.destroy();
+                if (animationId) cancelAnimationFrame(animationId);
+
+                // 2. Iniciar Lenis
+                lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    orientation: 'vertical',
+                    gestureOrientation: 'vertical',
+                    smoothWheel: true,
+                    wheelMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
                 });
-            });
+
+                function raf(time) {
+                    lenis.raf(time);
+                    animationId = requestAnimationFrame(raf);
+                }
+                animationId = requestAnimationFrame(raf);
+
+                // 3. Conectar links internos (Smooth Scroll)
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        const targetId = this.getAttribute('href');
+                        if (targetId === '#' || targetId === '') return;
+                        
+                        // Solo si el destino existe en esta página (ej: click en Home)
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            e.preventDefault();
+                            lenis.scrollTo(targetId);
+                        }
+                    });
+                });
+
+                // 4. MANEJO DE HASH AL CARGAR LA PÁGINA (La solución al problema)
+                // Detectamos si venimos de otra página con un #hash en la URL
+                const hash = window.location.hash;
+                
+                if (hash) {
+                    // Si hay hash, esperamos a que el DOM esté listo y saltamos
+                    // Usamos 'immediate: true' para que sea instantáneo y no se vea el viaje
+                    setTimeout(() => {
+                        const target = document.querySelector(hash);
+                        if (target) {
+                            lenis.scrollTo(target, { immediate: true, offset: 0 });
+                        }
+                    }, 100); // Pequeño delay técnico necesario
+                } else {
+                    // Si no hay hash, forzamos ir arriba (para arreglar bug de Astro que recuerda scroll)
+                    lenis.scrollTo(0, { immediate: true });
+                }
+            }
+
+            // Ejecutar en cada navegación
+            document.addEventListener('astro:page-load', initLenis);
         </script>
     </body>
 </html>

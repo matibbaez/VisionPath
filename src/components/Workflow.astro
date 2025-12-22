@@ -32,6 +32,7 @@ const headerHighlight = lang === 'en' ? "live system." : "sistema en vivo.";
         </div>
         <div class="relative grid grid-cols-1 gap-12 md:gap-0">
             <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/5 -translate-x-1/2 overflow-hidden">
+                {/* Corrección Tailwind: bg-gradient-to-b es válido, pero si usas v4 te sugiere linear. Lo dejo compatible v3/v4 */}
                 <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[--color-primary] to-transparent -translate-y-full transition-transform duration-[1.5s] ease-in-out scroll-line"></div>
             </div>
             {steps.map((step, index) => (
@@ -55,45 +56,79 @@ const headerHighlight = lang === 'en' ? "live system." : "sistema en vivo.";
         </div>
     </div>
 </section>
+
 <script>
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.25 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                target.classList.remove('opacity-0', 'translate-y-12');
-                const circle = target.querySelector('.step-circle');
-                if(circle) { circle.classList.remove('border-white/10'); circle.classList.add('border-[--color-primary]', 'shadow-[0_0_15px_rgba(255,85,0,0.4)]', 'scale-110'); }
-                const glow = target.querySelector('.step-glow');
-                if(glow) { glow.classList.remove('opacity-0'); glow.classList.add('opacity-40', 'animate-pulse-slow'); }
-                observer.unobserve(target);
+    function initWorkflow() {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.25 };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    target.classList.remove('opacity-0', 'translate-y-12');
+                    
+                    const circle = target.querySelector('.step-circle');
+                    if(circle) { 
+                        circle.classList.remove('border-white/10'); 
+                        circle.classList.add('border-[--color-primary]', 'shadow-[0_0_15px_rgba(255,85,0,0.4)]', 'scale-110'); 
+                    }
+                    
+                    const glow = target.querySelector('.step-glow');
+                    if(glow) { 
+                        glow.classList.remove('opacity-0'); 
+                        glow.classList.add('opacity-40', 'animate-pulse-slow'); 
+                    }
+                    
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+
+        // --- CORRECCIÓN AQUÍ ---
+        // Usamos "instanceof HTMLElement" para asegurar a TypeScript que el elemento tiene .style
+        document.querySelectorAll('.step-card').forEach((el, index) => {
+            if (el instanceof HTMLElement) {
+                el.style.transitionDelay = `${index * 150}ms`;
             }
+            observer.observe(el);
         });
-    }, observerOptions);
-    document.querySelectorAll('.step-card').forEach((el, index) => {
-        (el as HTMLElement).style.transitionDelay = `${index * 150}ms`;
-        observer.observe(el);
-    });
-    const titleObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.remove('opacity-0', 'translate-y-8');
-                titleObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => titleObserver.observe(el));
-    const lineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                const line = entry.target.querySelector('.scroll-line');
-                if(line) { line.classList.remove('-translate-y-full'); line.classList.add('translate-y-0'); }
-            }
-        });
-    }, { threshold: 0.1 });
-    const workflowSection = document.getElementById('workflow');
-    if(workflowSection) lineObserver.observe(workflowSection);
+
+        // Observer para el título
+        const titleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    titleObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => titleObserver.observe(el));
+
+        // Observer para la línea central
+        const lineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const line = entry.target.querySelector('.scroll-line');
+                    if(line) { 
+                        line.classList.remove('-translate-y-full'); 
+                        line.classList.add('translate-y-0'); 
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const workflowSection = document.getElementById('workflow');
+        if(workflowSection) lineObserver.observe(workflowSection);
+    }
+
+    // Ejecutar al inicio
+    initWorkflow();
+
+    // Ejecutar en cada navegación (View Transitions)
+    document.addEventListener('astro:page-load', initWorkflow);
 </script>
+
 <style>
     @keyframes pulseSlow { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
     .animate-pulse-slow { animation: pulseSlow 3s infinite ease-in-out; }
