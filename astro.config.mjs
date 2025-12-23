@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://visionpath-agency.vercel.app',
+  site: 'https://wearevisionpath.com', 
 
   i18n: {
     defaultLocale: "es",
