@@ -76,7 +76,6 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
                 }
 
                 // 2. DETECTOR DE MOBILE: Si es pantalla chica, NO iniciamos Lenis
-                // Usamos el scroll nativo que es mucho más rápido y fluido en iOS/Android
                 if (window.innerWidth < 1024) { 
                     return; 
                 }
@@ -89,7 +88,7 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
                     wheelMultiplier: 1,
-                    smoothTouch: false, // Importante: desactivar en touch devices
+                    smoothTouch: false, 
                     touchMultiplier: 2,
                 });
 
@@ -114,28 +113,30 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
                 });
             }
 
-            // 4. MANEJO DE SCROLL AL CAMBIAR DE PÁGINA (View Transitions)
+            // 4. MANEJO DE SCROLL AL CAMBIAR DE PÁGINA
             document.addEventListener('astro:page-load', () => {
                 initLenis();
 
-                // Manejo inteligente del hash (funciona con y sin Lenis)
+                // Detectar si hay que ir a una sección específica
                 const hash = window.location.hash;
                 if (hash) {
                     setTimeout(() => {
                         const target = document.querySelector(hash);
                         if (target) {
                             if (lenis) {
-                                // En Desktop usamos Lenis
+                                // Desktop: Salto instantáneo controlado por Lenis
                                 lenis.scrollTo(target, { immediate: true, offset: 0 });
                             } else {
-                                // En Mobile usamos scroll nativo
-                                target.scrollIntoView({ behavior: 'smooth' });
+                                // Mobile: Salto instantáneo nativo (CORREGIDO AQUÍ)
+                                // Usamos 'auto' en vez de 'smooth' para evitar el viaje visual feo
+                                target.scrollIntoView({ behavior: 'auto', block: 'start' });
                             }
                         }
-                    }, 100);
-                } else if (lenis) {
-                    // Solo forzamos top en desktop si no hay hash
-                    lenis.scrollTo(0, { immediate: true });
+                    }, 100); // Pequeño delay para asegurar que el DOM cargó
+                } else {
+                    // Si no hay hash, asegurar que estamos arriba
+                    if (lenis) lenis.scrollTo(0, { immediate: true });
+                    else window.scrollTo({ top: 0, behavior: 'auto' });
                 }
             });
         </script>
