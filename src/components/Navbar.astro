@@ -31,7 +31,7 @@ const navItems = [
 
 <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 transition-all duration-300">
   
-  <nav id="navbar" class="relative flex items-center justify-between px-6 py-3 w-[90%] max-w-4xl bg-black/60 border border-white/10 shadow-2xl backdrop-blur-xl rounded-full transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
+  <nav id="navbar" class="relative flex items-center justify-between px-6 py-3 w-[90%] max-w-4xl bg-black/60 border border-white/10 shadow-2xl backdrop-blur-md md:backdrop-blur-xl rounded-full transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]">
     
     <div class="z-10 flex items-center gap-4">
         <a href={isHome ? "#top" : `/${lang}/`} class="hover:scale-105 transition-transform">
@@ -55,7 +55,7 @@ const navItems = [
 
     <div class="flex items-center gap-4 z-10">
       <a href={getLink("#contacto")} class="hidden md:inline-flex group relative items-center justify-center px-6 py-2 text-sm font-bold text-black bg-white rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95">
-        <div class="absolute inset-0 bg-gradient-to-r from-[--color-primary] to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></div>
+        <div class="absolute inset-0 bg-linear-to-r from-[--color-primary] to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></div>
         <span class="relative z-10 flex items-center gap-2 group-hover:text-black transition-colors">{t('nav.contact')}</span>
       </a>
       <div class="md:hidden"><LanguagePicker /></div>
@@ -71,7 +71,7 @@ const navItems = [
     </div>
   </nav>
 
-  <div id="mobile-menu" class="absolute top-24 left-4 right-4 p-6 bg-[#0A0A0A] border border-white/10 rounded-3xl transform scale-95 opacity-0 pointer-events-none transition-all duration-300 origin-top z-40 flex flex-col gap-4 text-center shadow-2xl">
+  <div id="mobile-menu" class="absolute top-24 left-4 right-4 p-6 bg-black/95 border border-white/10 rounded-3xl transform scale-95 opacity-0 pointer-events-none transition-all duration-300 origin-top z-40 flex flex-col gap-4 text-center shadow-2xl backdrop-blur-none">
       {navItems.map((item) => (
         <a href={item.url} class="mobile-link text-xl font-medium text-gray-300 hover:text-[--color-primary] py-3 border-b border-white/5 last:border-0 transition-colors">{item.name}</a>
       ))}

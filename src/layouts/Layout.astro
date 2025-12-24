@@ -43,11 +43,14 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
         <title>{title}</title>
 
         <style is:global>
-            html.lenis, html.lenis body { height: auto; }
-            .lenis.lenis-smooth { scroll-behavior: auto !important; }
-            .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-            .lenis.lenis-stopped { overflow: hidden; }
-            .lenis.lenis-scrolling iframe { pointer-events: none; }
+            /* Lenis solo activo en desktop */
+            @media (min-width: 1024px) {
+                html.lenis, html.lenis body { height: auto; }
+                .lenis.lenis-smooth { scroll-behavior: auto !important; }
+                .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+                .lenis.lenis-stopped { overflow: hidden; }
+                .lenis.lenis-scrolling iframe { pointer-events: none; }
+            }
         </style>
         <ClientRouter />
     </head>
@@ -63,10 +66,22 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
 
             function initLenis() {
                 // 1. Limpieza
-                if (lenis) lenis.destroy();
-                if (animationId) cancelAnimationFrame(animationId);
+                if (lenis) {
+                    lenis.destroy();
+                    lenis = null;
+                }
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
 
-                // 2. Iniciar Lenis
+                // 2. DETECTOR DE MOBILE: Si es pantalla chica, NO iniciamos Lenis
+                // Usamos el scroll nativo que es mucho más rápido y fluido en iOS/Android
+                if (window.innerWidth < 1024) { 
+                    return; 
+                }
+
+                // 3. Iniciar Lenis SOLO en Desktop
                 lenis = new Lenis({
                     duration: 1.2,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -74,7 +89,7 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
                     gestureOrientation: 'vertical',
                     smoothWheel: true,
                     wheelMultiplier: 1,
-                    smoothTouch: false,
+                    smoothTouch: false, // Importante: desactivar en touch devices
                     touchMultiplier: 2,
                 });
 
@@ -84,13 +99,12 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
                 }
                 animationId = requestAnimationFrame(raf);
 
-                // 3. Conectar links internos (Smooth Scroll)
+                // Conectar links internos para Desktop
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         const targetId = this.getAttribute('href');
                         if (targetId === '#' || targetId === '') return;
                         
-                        // Solo si el destino existe en esta página (ej: click en Home)
                         const targetElement = document.querySelector(targetId);
                         if (targetElement) {
                             e.preventDefault();
@@ -98,28 +112,32 @@ const socialImage = new URL('/og-image.png', Astro.site || Astro.url).toString()
                         }
                     });
                 });
+            }
 
-                // 4. MANEJO DE HASH AL CARGAR LA PÁGINA (La solución al problema)
-                // Detectamos si venimos de otra página con un #hash en la URL
+            // 4. MANEJO DE SCROLL AL CAMBIAR DE PÁGINA (View Transitions)
+            document.addEventListener('astro:page-load', () => {
+                initLenis();
+
+                // Manejo inteligente del hash (funciona con y sin Lenis)
                 const hash = window.location.hash;
-                
                 if (hash) {
-                    // Si hay hash, esperamos a que el DOM esté listo y saltamos
-                    // Usamos 'immediate: true' para que sea instantáneo y no se vea el viaje
                     setTimeout(() => {
                         const target = document.querySelector(hash);
                         if (target) {
-                            lenis.scrollTo(target, { immediate: true, offset: 0 });
+                            if (lenis) {
+                                // En Desktop usamos Lenis
+                                lenis.scrollTo(target, { immediate: true, offset: 0 });
+                            } else {
+                                // En Mobile usamos scroll nativo
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }
                         }
-                    }, 100); // Pequeño delay técnico necesario
-                } else {
-                    // Si no hay hash, forzamos ir arriba (para arreglar bug de Astro que recuerda scroll)
+                    }, 100);
+                } else if (lenis) {
+                    // Solo forzamos top en desktop si no hay hash
                     lenis.scrollTo(0, { immediate: true });
                 }
-            }
-
-            // Ejecutar en cada navegación
-            document.addEventListener('astro:page-load', initLenis);
+            });
         </script>
         <CookieBanner />
     </body>
