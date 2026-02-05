@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Logo from '../../components/Logo.astro';
+import { getLangFromUrl } from '../../utils/i18n';
+
+export async function getStaticPaths() {
+  return ['es', 'en'].map(lang => ({ params: { lang } }));
+}
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: { 
+    title: "Conectá con VisionPath", 
+    subtitle: "Ingeniería digital de precisión.",
+    footer: "VisionPath Systems © 2025 • Buenos Aires / Global"
+  },
+  en: { 
+    title: "Connect with VisionPath", 
+    subtitle: "Precision digital engineering.",
+    footer: "VisionPath Systems © 2025 • Buenos Aires / Worldwide"
+  }
+};
+
+const t = content[lang];
+
+const links = [
+  { 
+    name: lang === 'es' ? "Explorar nuestra Web" : "Explore our Website", 
+    url: `/${lang}`,
+    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+    highlight: true 
+  },
+  { 
+    name: "WhatsApp Directo", 
+    url: "https://wa.me/5491153464411",
+    icon: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479"
+  },
+  { 
+    name: "LinkedIn Corporativo", 
+    url: "https://www.linkedin.com/company/visionpath/",
+    icon: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+  }
+];
+---
+
+<Layout title={`Links | VisionPath`}>
+  <main class="min-h-screen bg-[#050505] relative flex flex-col items-center justify-center px-6 py-12 overflow-x-hidden selection:bg-[#FF5500] selection:text-white">
+    
+    <div class="absolute inset-0 z-0 opacity-[0.05] pointer-events-none mix-blend-overlay" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF5500] opacity-10 blur-[100px] rounded-full pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-[400px] flex flex-col items-center text-center">
+      
+      <div class="mb-10 flex flex-col items-center gap-4 group">
+        <div class="transition-transform duration-700 group-hover:rotate-[360deg]">
+          <Logo />
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 tracking-[0.2em] uppercase">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+          </span>
+          System Online
+        </div>
+      </div>
+
+      <header class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-3 leading-none text-glow-pop">
+          {t.title}
+        </h1>
+        <p class="text-gray-500 font-mono text-[10px] uppercase tracking-[0.3em] max-w-[250px] mx-auto leading-relaxed">
+          {t.subtitle}
+        </p>
+      </header>
+
+      <nav class="w-full flex flex-col gap-4 mb-16">
+        {links.map((link) => (
+          <a 
+            href={link.url}
+            target={link.url.startsWith('http') ? "_blank" : "_self"}
+            class:list={[
+              "link-card group relative w-full rounded-2xl transition-all duration-300 active:scale-[0.96] overflow-hidden",
+              { "highlight-card": link.highlight }
+            ]}
+          >
+            <div class="absolute inset-0 bg-white/10 group-hover:bg-gradient-to-r group-hover:from-[#FF5500] group-hover:to-[#FF8800] transition-all duration-500"></div>
+            
+            <div class="relative m-[1px] flex items-center gap-4 bg-[#0A0A0A]/90 backdrop-blur-2xl rounded-[15px] px-6 py-5 text-left">
+              <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#FF5500] transition-all duration-500 group-hover:bg-[#FF5500]/10 group-hover:border-[#FF5500]/30 group-hover:scale-110">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={link.icon} />
+                </svg>
+              </div>
+              
+              <span class="flex-1 text-sm font-bold text-gray-200 group-hover:text-white transition-colors tracking-tight">
+                {link.name}
+              </span>
+
+              <svg class="w-4 h-4 text-gray-700 transition-all duration-500 group-hover:text-[#FF5500] group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </nav>
+
+      <footer class="flex flex-col items-center gap-6">
+        <div class="h-px w-8 bg-[#FF5500]/30"></div>
+        <p class="text-[9px] font-mono text-gray-600 uppercase tracking-[0.25em] leading-relaxed">
+          {t.footer}
+        </p>
+      </footer>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Glow Pop: Efecto metálico fundido idéntico al Home */
+  .text-glow-pop {
+    background: linear-gradient(
+      180deg, 
+      #FFFFFF 10%,     
+      #FFDAB9 45%,     
+      #FF5500 55%,     
+      #BF2800 90%      
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 0px rgba(0,0,0,1));
+  }
+
+  /* Animación de entrada para que se sienta premium */
+  .link-card {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: slideUp 0.6s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+  }
+
+  .highlight-card {
+    box-shadow: 0 0 20px -5px rgba(255, 85, 0, 0.3);
+  }
+
+  @keyframes slideUp {
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered Delay para los botones */
+  .link-card:nth-child(1) { animation-delay: 0.1s; }
+  .link-card:nth-child(2) { animation-delay: 0.2s; }
+  .link-card:nth-child(3) { animation-delay: 0.3s; }
+  .link-card:nth-child(4) { animation-delay: 0.4s; }
+</style>
