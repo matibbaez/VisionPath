@@ -51,3 +51,58 @@ export const projectsData = [
     color: "from-blue-900/20 to-slate-800/20" // Azules corporativos profundos
   }
 ];
+
+// Agregá esto al final de src/data/projects.ts
+
+// Reemplazá el array conceptualProjects en src/data/projects.ts con este:
+
+export const conceptualProjects = [
+  {
+    id: 'estudio-bejar',
+    title: 'Estudio Bejar',
+    category: 'Legal / Corporate Law',
+    image: '/bejar.png', 
+    tech: ['Astro', 'Tailwind', 'Framer'],
+    demoUrl: 'https://bejar-propuesta.vercel.app/'
+  },
+  {
+    id: 'tognee-asoc',
+    title: 'Tognee & Asoc.',
+    category: 'Legal / Boutique Firm',
+    image: '/tognee.png',
+    tech: ['Astro', 'React', 'Tailwind'],
+    demoUrl: 'https://tognonato-propuesta.vercel.app/'
+  },
+  {
+    id: 'brignaleti-abogados',
+    title: 'Brignaleti Abogados',
+    category: 'Legal / Civil & Family',
+    image: '/brignaleti.png',
+    tech: ['Astro', 'TypeScript', 'UI/UX'],
+    demoUrl: 'https://brignardello-propuesta.vercel.app/'
+  },
+  {
+    id: 'conti-legal',
+    title: 'Estudio Conti',
+    category: 'Legal / Penal & Criminal',
+    image: '/conti.png',
+    tech: ['Next.js', 'Tailwind', 'Motion'],
+    demoUrl: 'https://contreras-propuesta.vercel.app/'
+  },
+  {
+    id: 'dioanti-partners',
+    title: 'Dioanti Partners',
+    category: 'Legal / International',
+    image: '/dioanti.png',
+    tech: ['Astro', 'React', 'SEO'],
+    demoUrl: 'https://diodati-propuesta.vercel.app/'
+  },
+  {
+    id: 'lm-abogados',
+    title: 'LM Abogados',
+    category: 'Legal / Full Service',
+    image: '/lm-abogados.png',
+    tech: ['Astro', 'Tailwind', 'Vercel'],
+    demoUrl: 'https://lm-propuesta.vercel.app/'
+  }
+];

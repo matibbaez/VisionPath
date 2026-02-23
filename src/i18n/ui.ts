@@ -31,6 +31,13 @@ export const languages = {
       'footer.text': 'Tu visión no tiene límites. Nuestra ingeniería tampoco.',
       'footer.cta': 'Iniciar Proyecto',
       'footer.rights': 'Buenos Aires • Global',
+
+      'concepts.title': 'Laboratorio UI/UX',
+      'concepts.subtitle': 'Exploraciones de diseño y arquitecturas de alta velocidad.',
+      'concepts.badge': 'Conceptos Premium',
+      'concepts.cta.title': '¿Te gustó alguno para tu empresa?',
+      'concepts.cta.desc': 'Elegí un diseño de nuestro laboratorio y lo adaptamos a tu marca con tus colores y logo en solo 48 horas.',
+      'concepts.cta.button': 'Quiero mi web en 48hs',
     },
     en: {
       // Navbar
@@ -57,5 +64,12 @@ export const languages = {
       'footer.text': 'Your vision has no limits. Neither does our engineering.',
       'footer.cta': 'Start Project',
       'footer.rights': 'Buenos Aires • Worldwide',
+
+      'concepts.title': 'UI/UX Laboratory',
+      'concepts.subtitle': 'Design explorations and high-speed web architectures.',
+      'concepts.badge': 'Premium Concepts',
+      'concepts.cta.title': 'Found a design you love?',
+      'concepts.cta.desc': 'Choose a concept from our lab and we will adapt it to your brand with your colors and logo in just 48 hours.',
+      'concepts.cta.button': 'Get my site in 48hs',
     },
   } as const;
