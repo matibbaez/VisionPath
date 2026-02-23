@@ -2,7 +2,7 @@ export const projectsData = [
   {
     id: "vanguardia", 
     title: { es: "Vanguardia Seguros", en: "Vanguardia Seguros" },
-    category: { es: "InsurTech / High-End Presence", en: "InsurTech / High-End Presence" }, // Cambiamos LegalTech por InsurTech
+    category: { es: "InsurTech / High-End Presence", en: "InsurTech / High-End Presence" },
     description: { 
         es: "Arquitectura digital de alto rendimiento para el sector asegurador. Maximizando la conversión a través de la velocidad extrema y el diseño de confianza.", 
         en: "High-performance digital architecture for the insurance sector. Maximizing conversion through extreme speed and trust-based design." 
@@ -11,31 +11,31 @@ export const projectsData = [
         es: "El desafío principal fue transformar la presencia digital de una agencia de seguros tradicional en una plataforma de generación de autoridad. Utilizando Astro, logramos un rendimiento del 100% en Core Web Vitals, garantizando que el usuario acceda a la información de pólizas de forma instantánea. Diseñamos un flujo de navegación que elimina la fricción operativa y posiciona a la marca como líder en innovación dentro del mercado asegurador.",
         en: "The main challenge was to transform the digital presence of a traditional insurance agency into an authority-generating platform. Using Astro, we achieved 100% performance in Core Web Vitals, ensuring users access policy information instantaneously. We designed a navigation flow that eliminates operational friction and positions the brand as an innovation leader in the insurance market."
     },
-    tags: ["Astro", "Performance", "UI/UX System", "SEO"], // Reflejamos tu stack real y el valor de velocidad
+    tags: ["Astro", "Performance", "UI/UX System", "SEO"],
     image: "/vanguardia-image.png",
     bannerImage: "/BannerVanguardia.png",
-    color: "from-orange-600/20 to-amber-500/20" // Un gradiente que combine con tu branding naranja
+    color: "from-orange-600/20 to-amber-500/20" 
   },
   {
-    id: "marza-legal",
-    title: { es: "Marza Legal", en: "Marza Legal" },
-    category: { es: "LegalTech / Boutique Identity", en: "LegalTech / Boutique Identity" },
+    id: "tulex-app", // NUEVO CASO: TULEX
+    title: { es: "TuLex - Legal Cloud SaaS", en: "TuLex - Legal Cloud SaaS" },
+    category: { es: "SaaS / Cloud Platform", en: "SaaS / Cloud Platform" },
     description: { 
-        es: "Arquitectura digital minimalista para un estudio jurídico de elite. Enfocada en la autoridad visual y una experiencia de usuario sin fricciones.", 
-        en: "Minimalist digital architecture for an elite law firm. Focused on visual authority and a frictionless user experience." 
+        es: "Desarrollo de un sistema SaaS en la nube para la gestión inteligente de estudios jurídicos. Control de expedientes y plazos en tiempo real.", 
+        en: "Development of a cloud-based SaaS system for smart law firm management. Real-time case and deadline tracking." 
     },
     fullContent: {
-        es: "Desarrollamos una plataforma que refleja la precisión y el rigor del estudio Marza Legal. Utilizando Astro para una carga instantánea, logramos una interfaz que prioriza la legibilidad y la confianza. La estrategia técnica se centró en eliminar el ruido visual para destacar la trayectoria y especialización de la firma, optimizando cada punto de contacto para la captación de clientes de alto perfil.",
-        en: "We developed a platform that reflects the precision and rigor of Marza Legal. Using Astro for instantaneous loading, we achieved an interface that prioritizes readability and trust. The technical strategy focused on removing visual noise to highlight the firm's track record and specialization, optimizing every touchpoint for high-profile client acquisition."
+        es: "TuLex nació para resolver el problema de la obsolescencia en el software jurídico tradicional. Desarrollamos una plataforma 100% en la nube que permite a los abogados acceder a sus causas desde Tribunales usando su celular. La innovación central es su arquitectura de 'Semáforos Inteligentes', que automatiza el control de vencimientos mediante alertas visuales. Un sistema robusto, rápido y con seguridad de bases de datos aisladas.",
+        en: "TuLex was born to solve the problem of obsolescence in traditional legal software. We developed a 100% cloud platform that allows lawyers to access their cases directly from court using their mobile phones. The core innovation is its 'Smart Traffic Lights' architecture, automating deadline control through visual alerts. A robust, fast system with isolated database security."
     },
-    tags: ["Astro", "Edge Computing", "Legal UI"],
-    image: "/marzas.png",
-    bannerImage: "/marzas-image.png",
-    color: "from-zinc-600/20 to-stone-500/20" 
+    tags: ["SaaS", "Cloud Architecture", "Database", "Dashboard UI"],
+    image: "/lex.png", // Tu imagen de TuLex
+    bannerImage: "/lex.png", // Podés usar la misma para el banner adentro del caso o subir otra
+    color: "from-teal-600/20 to-emerald-500/20" // Un gradiente verde/tech que le da onda a "sistema activo/semáforo verde"
   },
   {
     id: "bustamante-legal",
-    title: { es: "Estudio Bustamante", en: "Bustamante Law Firm" }, // Título más directo
+    title: { es: "Estudio Bustamante", en: "Bustamante Law Firm" },
     category: { es: "LegalTech / High-End Corporate", en: "LegalTech / High-End Corporate" },
     description: { 
         es: "Transformación de la presencia institucional en una herramienta de conversión de alto rendimiento. Ingeniería orientada a resultados y SEO técnico.", 
@@ -48,13 +48,9 @@ export const projectsData = [
     tags: ["Astro", "Core Web Vitals", "SEO Strategy"],
     image: "/bustamante.png",
     bannerImage: "/bustamante-image.png",
-    color: "from-blue-900/20 to-slate-800/20" // Azules corporativos profundos
+    color: "from-blue-900/20 to-slate-800/20" 
   }
 ];
-
-// Agregá esto al final de src/data/projects.ts
-
-// Reemplazá el array conceptualProjects en src/data/projects.ts con este:
 
 export const conceptualProjects = [
   {
