@@ -12,8 +12,8 @@ export const projectsData = [
         en: "The main challenge was to transform the digital presence of a traditional insurance agency into an authority-generating platform. Using Astro, we achieved 100% performance in Core Web Vitals, ensuring users access policy information instantaneously. We designed a navigation flow that eliminates operational friction and positions the brand as an innovation leader in the insurance market."
     },
     tags: ["Astro", "Performance", "UI/UX System", "SEO"],
-    image: "/vanguardia-image.png",
-    bannerImage: "/BannerVanguardia.png",
+    image: "/vang.png",
+    bannerImage: "/vang.png",
     color: "from-orange-600/20 to-amber-500/20" 
   },
   {
@@ -29,26 +29,26 @@ export const projectsData = [
         en: "TuLex was born to solve the problem of obsolescence in traditional legal software. We developed a 100% cloud platform that allows lawyers to access their cases directly from court using their mobile phones. The core innovation is its 'Smart Traffic Lights' architecture, automating deadline control through visual alerts. A robust, fast system with isolated database security."
     },
     tags: ["SaaS", "Cloud Architecture", "Database", "Dashboard UI"],
-    image: "/lex.png", // Tu imagen de TuLex
-    bannerImage: "/lex.png", // Podés usar la misma para el banner adentro del caso o subir otra
+    image: "/lexd.png", // Tu imagen de TuLex
+    bannerImage: "/lexd.png", // Podés usar la misma para el banner adentro del caso o subir otra
     color: "from-teal-600/20 to-emerald-500/20" // Un gradiente verde/tech que le da onda a "sistema activo/semáforo verde"
   },
   {
-    id: "bustamante-legal",
-    title: { es: "Estudio Bustamante", en: "Bustamante Law Firm" },
-    category: { es: "LegalTech / High-End Corporate", en: "LegalTech / High-End Corporate" },
+    id: "juricloud",
+    title: { es: "JuriCloud", en: "JuriCloud" },
+    category: { es: "LegalTech / Claims Management SaaS", en: "LegalTech / Claims Management SaaS" },
     description: { 
-        es: "Transformación de la presencia institucional en una herramienta de conversión de alto rendimiento. Ingeniería orientada a resultados y SEO técnico.", 
-        en: "Transformation of institutional presence into a high-performance conversion tool. Result-oriented engineering and technical SEO." 
+        es: "Plataforma SaaS integral para la gestión 100% digital de reclamos legales. Seguimiento de expedientes en tiempo real y portal de clientes.", 
+        en: "Comprehensive SaaS platform for 100% digital legal claims management. Real-time case tracking and client portal." 
     },
     fullContent: {
-        es: "Para el Estudio Bustamante, el objetivo fue claro: la web debía ser tan eficiente como sus abogados. Implementamos una arquitectura sobre Astro que garantiza un puntaje de 100/100 en performance, fundamental para el posicionamiento orgánico. Diseñamos sistemas de navegación intuitivos que guían al usuario hacia la consulta, profesionalizando la entrada digital de la firma al mercado global.",
-        en: "For Bustamante Law Firm, the objective was clear: the website had to be as efficient as its lawyers. We implemented an architecture on Astro that guarantees a 100/100 performance score, fundamental for organic positioning. We designed intuitive navigation systems that guide the user toward consultation, professionalizing the firm's digital entry into the global market."
+        es: "JuriCloud representa la evolución en la gestión de siniestros y reclamos. Desarrollamos una plataforma en la nube con arquitectura escalable que centraliza las operaciones de los estudios jurídicos. Su característica principal es el sistema de seguimiento: permite a los clientes consultar el estado de su trámite en tiempo real mediante un código único, mientras que los profesionales acceden a un panel de control avanzado para gestionar expedientes, optimizando tiempos y eliminando la fricción administrativa.",
+        en: "JuriCloud represents the evolution in claims management. We developed a scalable cloud platform that centralizes law firm operations. Its core feature is the tracking system: it allows clients to check their case status in real-time using a unique code, while professionals access an advanced dashboard to manage files, optimizing time and eliminating administrative friction."
     },
-    tags: ["Astro", "Core Web Vitals", "SEO Strategy"],
-    image: "/bustamante.png",
-    bannerImage: "/bustamante-image.png",
-    color: "from-blue-900/20 to-slate-800/20" 
+    tags: ["Angular", "SaaS Platform", "Client Portal", "UI/UX"],
+    image: "/jurii.png",
+    bannerImage: "/jurii.png",
+    color: "from-sky-500/20 to-indigo-600/20" // Gradiente celeste/índigo que hace match con la marca
   }
 ];
 
