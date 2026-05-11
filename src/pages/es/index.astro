@@ -11,19 +11,19 @@ import Workflow from '../../components/Workflow.astro';
 import Trust from '../../components/Trust.astro';
 import Footer from '../../components/Footer.astro';
 import Concepts from '../../components/Concepts.astro'; // <-- Agregalo arriba
+import ClientLogos from '../../components/ClientLogos.astro'; // <-- Nuevo componente para logos de clientes
 ---
 
 <Layout title="VisionPath | Digital Product Studio">
 	<Navbar />
 	<main>
 		<Hero />
-		<Services />
-		<Workflow />
+        <Services />
+        <Workflow />
         <TechStack />
         <Projects />
-        <!-- <Trust /> -->
-        <!-- <Templates /> -->
-        <Concepts /> <!-- <-- Agregalo aquí -->
+        <ClientLogos /> 
+        <Concepts />
         <Contact />
         <Footer />
 	</main>

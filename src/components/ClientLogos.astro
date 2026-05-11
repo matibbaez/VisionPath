@@ -1,0 +1,84 @@
+---
+import { clientLogos } from '../data/projects';
+import { getLangFromUrl } from '../utils/i18n';
+
+const lang = getLangFromUrl(Astro.url);
+
+const sectionLabel = lang === 'en' ? "CLIENT NETWORK" : "ALIANZAS ESTRATÉGICAS";
+const title1 = lang === 'en' ? "Trusted by" : "Impulsando a";
+const title2 = lang === 'en' ? "leading firms." : "firmas líderes.";
+---
+
+<section id="clientes" class="relative py-24 md:py-32 bg-black overflow-hidden border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 mb-16 md:mb-24">
+        <span class="text-[--color-primary] font-mono text-sm tracking-widest uppercase mb-4 block">
+            /// {sectionLabel}
+        </span>
+        <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
+            {title1} <br/>
+            <span class="text-glow-pop">{title2}</span>
+        </h2>
+    </div>
+
+    <div class="relative flex overflow-x-hidden">
+        <div class="py-6 animate-marquee whitespace-nowrap flex items-center gap-16 md:gap-24 pr-16 md:pr-24">
+            {clientLogos.map((client: any) => (
+                <div class="flex items-center justify-center min-w-[140px] md:min-w-[180px] opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0 cursor-pointer shrink-0">
+                    {client.type === 'image' ? (
+                        <img 
+                            src={client.logo} 
+                            alt={client.name} 
+                            class="h-8 md:h-10 w-auto object-contain"
+                        />
+                    ) : (
+                        <div set:html={client.content} class="inline-block" />
+                    )}
+                </div>
+            ))}
+        </div>
+
+        <div class="absolute top-0 py-6 animate-marquee2 whitespace-nowrap flex items-center gap-16 md:gap-24 pr-16 md:pr-24" aria-hidden="true">
+            {clientLogos.map((client: any) => (
+                <div class="flex items-center justify-center min-w-[140px] md:min-w-[180px] opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0 cursor-pointer shrink-0">
+                    {client.type === 'image' ? (
+                        <img 
+                            src={client.logo} 
+                            alt={client.name} 
+                            class="h-8 md:h-10 w-auto object-contain"
+                        />
+                    ) : (
+                        <div set:html={client.content} class="inline-block" />
+                    )}
+                </div>
+            ))}
+        </div>
+
+        <div class="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-black to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-black to-transparent z-10 pointer-events-none"></div>
+    </div>
+</section>
+
+<style>
+    .animate-marquee {
+        animation: marquee 35s linear infinite;
+    }
+
+    .animate-marquee2 {
+        animation: marquee2 35s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-100%); }
+    }
+
+    @keyframes marquee2 {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(0%); }
+    }
+
+    .flex:hover .animate-marquee,
+    .flex:hover .animate-marquee2 {
+        animation-play-state: paused;
+    }
+</style>
