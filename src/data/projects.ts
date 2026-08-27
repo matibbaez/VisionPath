@@ -1,54 +1,58 @@
+// src/data/projects.ts
+
 export const projectsData = [
   {
-    id: "vanguardia", 
-    title: { es: "Vanguardia Seguros", en: "Vanguardia Seguros" },
-    category: { es: "InsurTech / High-End Presence", en: "InsurTech / High-End Presence" },
+    id: "trust-alliance", 
+    title: { es: "Trust Alliance", en: "Trust Alliance" },
+    category: { es: "Startup LegalTech", en: "Startup LegalTech" },
     description: { 
-        es: "Arquitectura digital de alto rendimiento para el sector asegurador. Maximizando la conversión a través de la velocidad extrema y el diseño de confianza.", 
-        en: "High-performance digital architecture for the insurance sector. Maximizing conversion through extreme speed and trust-based design." 
+        es: "La nueva generación de servicios legales. Integramos derecho, inteligencia artificial y automatización para transformar los procesos en experiencias ágiles, transparentes y trazables.", 
+        en: "The new generation of legal services. We integrate law, artificial intelligence, and automation to transform processes into agile, transparent, and traceable experiences." 
     },
     fullContent: {
-        es: "El desafío principal fue transformar la presencia digital de una agencia de seguros tradicional en una plataforma de generación de autoridad. Utilizando Astro, logramos un rendimiento del 100% en Core Web Vitals, garantizando que el usuario acceda a la información de pólizas de forma instantánea. Diseñamos un flujo de navegación que elimina la fricción operativa y posiciona a la marca como líder en innovación dentro del mercado asegurador.",
-        en: "The main challenge was to transform the digital presence of a traditional insurance agency into an authority-generating platform. Using Astro, we achieved 100% performance in Core Web Vitals, ensuring users access policy information instantaneously. We designed a navigation flow that eliminates operational friction and positions the brand as an innovation leader in the insurance market."
+        es: "Trust Alliance nace con la misión de revolucionar la prestación de servicios legales. A través de una arquitectura de software de última generación, integramos inteligencia artificial y flujos de trabajo automatizados para ofrecer a los clientes una experiencia sin precedentes. El sistema garantiza trazabilidad absoluta en cada etapa del proceso, eliminando la burocracia tradicional y estableciendo un nuevo estándar de agilidad y transparencia en el mercado LegalTech.",
+        en: "Trust Alliance was born with the mission to revolutionize legal service delivery. Through next-generation software architecture, we integrate artificial intelligence and automated workflows to offer clients an unprecedented experience. The system guarantees absolute traceability at every stage of the process, eliminating traditional bureaucracy and setting a new standard for agility and transparency in the LegalTech market."
     },
-    tags: ["Astro", "Performance", "UI/UX System", "SEO"],
-    image: "/vang.png",
-    bannerImage: "/vang.png",
-    color: "from-orange-600/20 to-amber-500/20" 
+    tags: ["LegalTech", "AI", "Automation", "SaaS"],
+    image: "/trust-final.png",
+    bannerImage: "/trust-final.png",
+    color: "from-blue-600/20 to-indigo-900/20" 
   },
   {
-    id: "tulex-app", 
-    title: { es: "TuLex - Legal Cloud SaaS", en: "TuLex - Legal Cloud SaaS" },
-    category: { es: "SaaS / Cloud Platform", en: "SaaS / Cloud Platform" },
+    id: "tulex", 
+    title: { es: "TuLex", en: "TuLex" },
+    category: { es: "Legal Cloud SaaS", en: "Legal Cloud SaaS" },
     description: { 
-        es: "Desarrollo de un sistema SaaS en la nube para la gestión inteligente de estudios jurídicos. Control de expedientes y plazos en tiempo real.", 
-        en: "Development of a cloud-based SaaS system for smart law firm management. Real-time case and deadline tracking." 
+        es: "Sistema SaaS en la nube para la gestión inteligente de estudios jurídicos, control de expedientes y plazos en tiempo real.", 
+        en: "Cloud SaaS system for intelligent law firm management, case tracking, and real-time deadlines." 
     },
     fullContent: {
-        es: "TuLex nació para resolver el problema de la obsolescencia en el software jurídico tradicional. Desarrollamos una plataforma 100% en la nube que permite a los abogados acceder a sus causas desde Tribunales usando su celular. La innovación central es su arquitectura de 'Semáforos Inteligentes', que automatiza el control de vencimientos mediante alertas visuales. Un sistema robusto, rápido y con seguridad de bases de datos aisladas.",
-        en: "TuLex was born to solve the problem of obsolescence in traditional legal software. We developed a 100% cloud platform that allows lawyers to access their cases directly from court using their mobile phones. The core innovation is its 'Smart Traffic Lights' architecture, automating deadline control through visual alerts. A robust, fast system with isolated database security."
+        es: "TuLex es una solución integral diseñada para modernizar la gestión diaria de los estudios jurídicos. Como un ecosistema nativo en la nube, centraliza el control de expedientes, automatiza el seguimiento de plazos procesales y facilita la colaboración del equipo legal en tiempo real. Su interfaz intuitiva permite a los abogados tener una visión completa de su cartera de casos desde cualquier dispositivo, reduciendo el margen de error humano y optimizando la rentabilidad del estudio.",
+        en: "TuLex is a comprehensive solution designed to modernize the daily management of law firms. As a cloud-native ecosystem, it centralizes case control, automates the tracking of procedural deadlines, and facilitates real-time legal team collaboration. Its intuitive interface allows lawyers to have a complete overview of their case portfolio from any device, reducing human error and optimizing the firm's profitability."
     },
-    tags: ["SaaS", "Cloud Architecture", "Database", "Dashboard UI"],
-    image: "/lexd.png", // Tu imagen de TuLex
-    bannerImage: "/lexd.png", // Podés usar la misma para el banner adentro del caso o subir otra
-    color: "from-teal-600/20 to-emerald-500/20" // Un gradiente verde/tech que le da onda a "sistema activo/semáforo verde"
+    tags: ["SaaS", "Management", "Cloud", "Platform"],
+    image: "/lexd.png",
+    bannerImage: "/lexd.png",
+    color: "from-[--color-primary]/20 to-orange-500/20" 
   },
   {
-    id: "juricloud",
-    title: { es: "JuriCloud", en: "JuriCloud" },
-    category: { es: "LegalTech / Claims Management SaaS", en: "LegalTech / Claims Management SaaS" },
+    id: "reclama-ya",
+    title: { es: "ReclamaYa & ReclamarYa", en: "ReclamaYa & ReclamarYa" },
+    category: { es: "LegalTech & Sindical", en: "LegalTech & Syndicate" },
     description: { 
-        es: "Plataforma SaaS integral para la gestión 100% digital de reclamos legales. Seguimiento de expedientes en tiempo real y portal de clientes.", 
-        en: "Comprehensive SaaS platform for 100% digital legal claims management. Real-time case tracking and client portal." 
+        es: "Núcleo de automatización inteligente para reclamos, con despliegue general y una versión exclusiva para el sindicato ASIM.", 
+        en: "Intelligent automation core for claims, featuring a general deployment and an exclusive version for the ASIM syndicate." 
     },
     fullContent: {
-        es: "JuriCloud representa la evolución en la gestión de siniestros y reclamos. Desarrollamos una plataforma en la nube con arquitectura escalable que centraliza las operaciones de los estudios jurídicos. Su característica principal es el sistema de seguimiento: permite a los clientes consultar el estado de su trámite en tiempo real mediante un código único, mientras que los profesionales acceden a un panel de control avanzado para gestionar expedientes, optimizando tiempos y eliminando la fricción administrativa.",
-        en: "JuriCloud represents the evolution in claims management. We developed a scalable cloud platform that centralizes law firm operations. Its core feature is the tracking system: it allows clients to check their case status in real-time using a unique code, while professionals access an advanced dashboard to manage files, optimizing time and eliminating administrative friction."
+        es: "Desarrollamos un motor de automatización dual diseñado para acelerar la resolución de reclamos legales. Por un lado, ReclamaYa opera como una plataforma abierta al público general, simplificando el inicio y seguimiento de trámites indemnizatorios. Por otro lado, ReclamarYa es una adaptación exclusiva y securizada para el sindicato ASIM, integrándose con sus flujos internos. Ambas plataformas comparten una infraestructura robusta que digitaliza el 100% del proceso, desde la carga documental hasta la resolución, brindando un servicio transparente y ágil.",
+        en: "We developed a dual automation engine designed to accelerate the resolution of legal claims. On one hand, ReclamaYa operates as an open platform for the general public, simplifying the initiation and tracking of compensation procedures. On the other hand, ReclamarYa is an exclusive, secured adaptation for the ASIM syndicate, integrating with their internal workflows. Both platforms share a robust infrastructure that digitizes 100% of the process, providing a transparent and agile service."
     },
-    tags: ["Angular", "SaaS Platform", "Client Portal", "UI/UX"],
-    image: "/jurii.png",
-    bannerImage: "/jurii.png",
-    color: "from-sky-500/20 to-indigo-600/20" // Gradiente celeste/índigo que hace match con la marca
+    tags: ["Automation", "LegalTech", "ASIM", "Dual System"],
+    image: "/reclamaryaaa.png", 
+    images: ["/reclamaya-1.png", "/reclamarya-2.png"], 
+    isSplit: true,
+    bannerImage: "/reclamaryaaa.png",
+    color: "from-orange-600/20 to-red-600/20" 
   }
 ];
 
@@ -103,10 +107,48 @@ export const conceptualProjects = [
   }
 ];
 
+export const deployedProjects = [
+  {
+    id: "mgeo",
+    title: "M-GEO Abogados & Sports",
+    category: { es: "Derecho Deportivo & Corporativo", en: "Sports & Corporate Law" },
+    service: "Plataforma Digital Premium",
+    liveUrl: "#", 
+  },
+  {
+    id: "sp-abogados",
+    title: "SF Abogados",
+    category: { es: "El compromiso que exige tu caso", en: "The commitment your case demands" },
+    service: "Desarrollo High-End",
+    liveUrl: "#", 
+  },
+  {
+    id: "estudio-sevilla",
+    title: "Estudio de Sevilla",
+    category: { es: "Indemnizaciones accidentes de moto", en: "Motorcycle accident compensation" },
+    service: "Presencia Digital",
+    liveUrl: "#", 
+  },
+  {
+    id: "reclamarte",
+    title: "Reclamarte",
+    category: { es: "Sistema de reclamos ART", en: "Workers' Comp claims system" },
+    service: "LegalTech & Automation",
+    liveUrl: "#", 
+  },
+  {
+    id: "leonardo-perez",
+    title: "Leonardo Pérez",
+    category: { es: "Derecho Penal & Civil", en: "Criminal & Civil Law" },
+    service: "Diseño & Desarrollo Web",
+    liveUrl: "#", 
+  }
+];
+
 export const clientLogos = [
   { 
     name: "Trust Alliance", 
-    type: "code", // Cambiamos a 'code' para armar la estructura híbrida
+    type: "code",
     content: `
       <div class="flex items-center gap-3 text-white select-none">
         <div class="w-8 h-8 md:w-10 md:h-10 shrink-0">
@@ -186,7 +228,6 @@ export const clientLogos = [
   { 
     name: "Estudio Sevilla", 
     type: "code", 
-    // DISEÑO MEJORADO: Grulla geométrica abstracta en código nativo
     content: `
       <div class="flex items-center gap-2.5 text-white select-none">
         <div class="w-8 h-8 md:w-10 md:h-10 shrink-0">
@@ -304,43 +345,5 @@ export const clientLogos = [
         </div>
       </div>
     `
-  }
-];
-
-export const deployedProjects = [
-  {
-    id: "trust-alliance",
-    title: "Trust Alliance",
-    category: { es: "Plataforma LegalTech", en: "LegalTech Platform" },
-    service: "Ingeniería Web & UI/UX",
-    liveUrl: "https://www.trustalliance.ar/", // Reemplazar por el dominio real
-  },
-  {
-    id: "mgeo",
-    title: "MGEO Abogados & Sports",
-    category: { es: "Derecho Deportivo & Boutique", en: "Sports Law & Boutique" },
-    service: "Plataforma Digital Premium",
-    liveUrl: "https://mgeo.example.com", // Reemplazar por el dominio real
-  },
-  {
-    id: "sp-abogados",
-    title: "SP Abogados",
-    category: { es: "Estudio Jurídico Integral", en: "Full-Service Law Firm" },
-    service: "Desarrollo High-End",
-    liveUrl: "https://www.spabogado.com.ar/", // Reemplazar por el dominio real
-  },
-  {
-    id: "estudio-sevilla",
-    title: "Estudio de Sevilla",
-    category: { es: "Derecho Corporativo & Civil", en: "Corporate & Civil Law" },
-    service: "Presencia Digital",
-    liveUrl: "https://www.estudiosevilla.com.ar/", // Reemplazar por el dominio real
-  },
-  {
-    id: "leonardo-perez",
-    title: "Leonardo Pérez Abogados",
-    category: { es: "Estudio Jurídico Boutique", en: "Boutique Law Firm" },
-    service: "Diseño & Desarrollo Web",
-    liveUrl: "https://www.estudioleonardoperez.com.ar/", // Reemplazar por el dominio real
   }
 ];
