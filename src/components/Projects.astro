@@ -8,44 +8,79 @@ const title1 = lang === 'en' ? "Engineering that" : "Ingeniería que";
 const title2 = lang === 'en' ? "transforms businesses." : "transforma negocios.";
 const btnText = lang === 'en' ? "View Case" : "Ver Caso";
 
-// 1. TUS 3 PROYECTOS PRINCIPALES DE VANGUARDIA
+// 1. TUS 6 PROYECTOS PRINCIPALES DE VANGUARDIA (Ya separados y limpios)
 const vanguardProjects = [
   {
     id: "trust-alliance",
     title: "Trust Alliance",
     category: "Startup LegalTech",
     description: lang === 'es' 
-        ? "La nueva generación de servicios legales. Integramos derecho, inteligencia artificial y automatización para transformar los procesos en experiencias ágiles, transparentes y trazables." 
-        : "The new generation of legal services. We integrate law, artificial intelligence, and automation to transform processes into agile, transparent, and traceable experiences.",
+        ? "La nueva generación de servicios legales. Integramos derecho, inteligencia artificial y automatización para transformar los procesos." 
+        : "The new generation of legal services. We integrate law, AI, and automation to transform processes.",
     image: "/trust-final.png",
     link: `/${lang}/case/trust-alliance`,
     color: "from-blue-600/20",
-    tags: ["LegalTech", "AI", "Automation"]
+    tags: ["Data Analytics", "Marketing", "SaaS"]
+  },
+  {
+    id: "reclama-ya",
+    title: "ReclamaYa",
+    category: "LegalTech & Automatización",
+    description: lang === 'es' 
+        ? "Sistema avanzado de automatización de reclamos con gestión multinivel de referidos y asignación dinámica." 
+        : "Advanced claims automation system with multi-level referral management and dynamic assignment.",
+    image: "/reclamaya_so.png",
+    link: `/${lang}/case/reclama-ya`,
+    color: "from-orange-600/20",
+    tags: ["Automation", "Roles System", "LegalTech"]
   },
   {
     id: "tulex",
     title: "TuLex",
     category: "Legal Cloud SaaS",
     description: lang === 'es' 
-        ? "Sistema SaaS en la nube para la gestión inteligente de estudios jurídicos, control de expedientes y plazos en tiempo real." 
-        : "Cloud SaaS system for intelligent law firm management, case tracking, and real-time deadlines.",
-    image: "/lexd.png",
+        ? "El ecosistema definitivo para la gestión integral y operativa de estudios jurídicos." 
+        : "The definitive ecosystem for comprehensive law firm management and operations.",
+    image: "/tullex.png",
     link: `/${lang}/case/tulex`,
     color: "from-[--color-primary]/20",
-    tags: ["SaaS", "Management", "Cloud"]
+    tags: ["Management", "LegalTech", "Platform"]
   },
   {
-    id: "reclama-ya",
-    title: "ReclamaYa & ReclamarYa",
-    category: "LegalTech & Sindical",
+    id: "portal-asimm",
+    title: "Portal Sindical ASIMM",
+    category: "Plataforma Institucional",
     description: lang === 'es' 
-        ? "Núcleo de automatización inteligente para reclamos, con despliegue general y una versión exclusiva para el sindicato ASIM." 
-        : "Intelligent automation core for claims, featuring a general deployment and an exclusive version for the ASIM syndicate.",
-    isSplit: true,
-    images: ["/reclamaya-1.png", "/reclamarya-2.png"], // Imágenes partidas al medio
-    link: `/${lang}/case/reclama-ya`,
-    color: "from-orange-600/20",
-    tags: ["Automation", "LegalTech", "ASIM"]
+        ? "Sistema de gestión y automatización de reclamos desarrollado exclusivamente para el sindicato ASIM." 
+        : "Claims management and automation system developed exclusively for the ASIM syndicate.",
+    image: "/asimm_so.png",
+    link: `/${lang}/case/portal-asimm`,
+    color: "from-red-600/20",
+    tags: ["Syndicate", "Custom Portal", "Automation"]
+  },
+  {
+    id: "reclamarte",
+    title: "Reclamarte",
+    category: "Sistemas ART",
+    description: lang === 'es' 
+        ? "Arquitectura especializada en la automatización y gestión de reclamos por accidentes de trabajo." 
+        : "Specialized architecture for the automation and management of workers' compensation claims.",
+    image: "/reclamarte_so.png",
+    link: `/${lang}/case/reclamarte`,
+    color: "from-red-500/20",
+    tags: ["LegalTech", "ART", "Claims"]
+  },
+  {
+    id: "devblog",
+    title: "DevBlog",
+    category: "Tech Hub & Content",
+    description: lang === 'es' 
+        ? "Plataforma de contenido técnico y desarrollo, optimizada para rendimiento extremo y SEO estructural." 
+        : "Technical and development content platform, optimized for extreme performance and structural SEO.",
+    image: "/devblog.png",
+    link: `/${lang}/case/devblog`,
+    color: "from-fuchsia-600/20",
+    tags: ["Web Dev", "Performance", "SEO"]
   }
 ];
 
@@ -53,31 +88,38 @@ const vanguardProjects = [
 const productionProjects = [
   { 
     name: "M-GEO Abogados & Sports", 
-    category: lang === 'es' ? "Asesoramiento jurídico integral y representación." : "Comprehensive legal advice and sports representation.", 
+    category: lang === 'es' ? "Firma Legal Corporativa" : "Corporate Law Firm", 
     image: "/m-geo.png", 
     link: "https://www.m-geo.ar/",
     tags: ["Sports", "Legal", "Corporate"]
   },
   { 
     name: "SP Abogados", 
-    category: lang === 'es' ? "El compromiso que exige tu caso." : "The commitment your case demands.", 
+    category: lang === 'es' ? "Servicios Legales Boutique" : "Boutique Legal Services", 
     image: "/sp-abogado.png", 
     link: "https://www.spabogado.com.ar/",
     tags: ["Civil", "Laboral", "Familia"]
   },
   { 
-    name: "Estudio Sevilla", 
-    category: lang === 'es' ? "La mejor indemnización para los pibes de las motos." : "Top compensation for motorcycle riders.", 
+    name: "Estudio de Sevilla", 
+    category: lang === 'es' ? "Especialistas en Accidentes" : "Accident Compensation Specialists", 
     image: "/estudio-sevilla.png", 
     link: "https://www.estudiosevilla.com.ar/",
     tags: ["Accidentes", "Indemnizaciones"]
   },
   { 
-    name: "Reclamarte", 
-    category: lang === 'es' ? "Sistema especializado de reclamos ART." : "Specialized Workers' Comp claims system.", 
-    image: "/reclamarte.png", 
-    link: "https://www.reclamarte.ar/",
-    tags: ["ART", "LegalTech", "Automation"]
+    name: "Vanguardia Seguros", 
+    category: lang === 'es' ? "Agencia de Seguros" : "Insurance Agency", 
+    image: "/vanguardia-final.png", 
+    link: "https://vanguardia-seguros.vercel.app/",
+    tags: ["InsurTech", "Seguros", "Corporate"]
+  },
+  { 
+    name: "Leonardo Pérez Abogados", 
+    category: lang === 'es' ? "Derecho Penal & Civil" : "Criminal & Civil Law", 
+    image: "/leonardo-perez.png", 
+    link: "#",
+    tags: ["Penal", "Civil", "Litigios"]
   }
 ];
 ---
@@ -134,34 +176,8 @@ const productionProjects = [
                     </div>
     
                     <div class="relative h-64 md:h-full w-full overflow-hidden order-1 md:order-2 border-b md:border-b-0 md:border-l border-white/5 bg-[#050505]">
-                        
-                        {project.isSplit ? (
-                            <!-- PANTALLA PARTIDA 50/50 AL ESTILO ORIGINAL -->
-                            <div class="absolute inset-0 flex z-0 w-full h-full">
-                                <!-- Lado Izquierdo (ReclamaYa) -->
-                                <div class="w-1/2 h-full relative overflow-hidden border-r border-white/10">
-                                    <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
-                                    <img src={project.images[0]} alt="Reclama Ya" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop'"/>
-                                </div>
-                                
-                                <!-- Lado Derecho (ReclamarYa) -->
-                                <div class="w-1/2 h-full relative overflow-hidden">
-                                    <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
-                                    <img src={project.images[1]} alt="Reclamar Ya" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop'"/>
-                                </div>
-
-                                <!-- Badge Divisor -->
-                                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-[#0A0A0A]/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center shadow-2xl">
-                                    <span class="text-[--color-primary] text-[9px] font-mono tracking-widest uppercase font-bold">Dual System</span>
-                                </div>
-                            </div>
-                        ) : (
-                            <!-- IMAGEN ÚNICA DE BORDE A BORDE -->
-                            <div class="absolute inset-0 w-full h-full">
-                                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
-                                <img src={project.image} alt={project.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop'" />
-                            </div>
-                        )}
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
+                        <img src={project.image} alt={project.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop'" />
                     </div>
                 </article>
             ))}
@@ -217,6 +233,13 @@ const productionProjects = [
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                     </svg>
                                 </div>
+                            </div>
+
+                            <div class="mt-4 sm:mt-2 flex items-center gap-2 bg-white/5 w-fit px-2.5 py-1 rounded border border-white/5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-[9px] text-gray-400 font-mono uppercase tracking-widest">
+                                    {lang === 'es' ? 'Activo' : 'Live'}
+                                </span>
                             </div>
                             
                             <div class="flex flex-wrap gap-2 mt-3">

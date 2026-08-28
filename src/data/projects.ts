@@ -1,58 +1,105 @@
-// src/data/projects.ts
-
 export const projectsData = [
   {
     id: "trust-alliance", 
     title: { es: "Trust Alliance", en: "Trust Alliance" },
-    category: { es: "Startup LegalTech", en: "Startup LegalTech" },
+    category: { es: "Startup LegalTech", en: "LegalTech Startup" },
     description: { 
-        es: "La nueva generación de servicios legales. Integramos derecho, inteligencia artificial y automatización para transformar los procesos en experiencias ágiles, transparentes y trazables.", 
-        en: "The new generation of legal services. We integrate law, artificial intelligence, and automation to transform processes into agile, transparent, and traceable experiences." 
+        es: "La nueva generación de servicios legales. Integramos derecho, inteligencia artificial y automatización para transformar los procesos.", 
+        en: "The new generation of legal services. We integrate law, AI, and automation to transform processes." 
     },
     fullContent: {
         es: "Trust Alliance nace con la misión de revolucionar la prestación de servicios legales. A través de una arquitectura de software de última generación, integramos inteligencia artificial y flujos de trabajo automatizados para ofrecer a los clientes una experiencia sin precedentes. El sistema garantiza trazabilidad absoluta en cada etapa del proceso, eliminando la burocracia tradicional y estableciendo un nuevo estándar de agilidad y transparencia en el mercado LegalTech.",
         en: "Trust Alliance was born with the mission to revolutionize legal service delivery. Through next-generation software architecture, we integrate artificial intelligence and automated workflows to offer clients an unprecedented experience. The system guarantees absolute traceability at every stage of the process, eliminating traditional bureaucracy and setting a new standard for agility and transparency in the LegalTech market."
     },
-    tags: ["LegalTech", "AI", "Automation", "SaaS"],
+    tags: ["Data Analytics", "Marketing", "SaaS"],
     image: "/trust-final.png",
     bannerImage: "/trust-final.png",
     color: "from-blue-600/20 to-indigo-900/20" 
+  },
+  {
+    id: "reclama-ya",
+    title: { es: "ReclamaYa", en: "ReclamaYa" },
+    category: { es: "LegalTech & Automatización", en: "LegalTech & Automation" },
+    description: { 
+        es: "Sistema avanzado de automatización de reclamos con gestión multinivel de referidos y asignación dinámica.", 
+        en: "Advanced claims automation system with multi-level referral management and dynamic assignment." 
+    },
+    fullContent: {
+        es: "ReclamaYa es una plataforma inteligente desarrollada para escalar operaciones legales. Su arquitectura central incluye una compleja gestión de referidos y roles: los brokers administran a sus productores, quienes a su vez cargan y monitorean sus casos. En paralelo, un sistema de administración asigna dinámicamente las tareas a los tramitadores. Todo este ecosistema digital elimina los cuellos de botella administrativos y acelera drásticamente los tiempos de resolución.",
+        en: "ReclamaYa is an intelligent platform developed to scale legal operations. Its core architecture includes complex referral and role management: brokers manage their producers, who in turn upload and monitor their cases. In parallel, an administration system dynamically assigns tasks to handlers. This entire digital ecosystem eliminates administrative bottlenecks and dramatically accelerates resolution times."
+    },
+    tags: ["Automation", "Roles System", "LegalTech"],
+    image: "/reclamaya_so.png", 
+    bannerImage: "/reclamaya-ban.png",
+    color: "from-orange-600/20 to-amber-500/20" 
   },
   {
     id: "tulex", 
     title: { es: "TuLex", en: "TuLex" },
     category: { es: "Legal Cloud SaaS", en: "Legal Cloud SaaS" },
     description: { 
-        es: "Sistema SaaS en la nube para la gestión inteligente de estudios jurídicos, control de expedientes y plazos en tiempo real.", 
-        en: "Cloud SaaS system for intelligent law firm management, case tracking, and real-time deadlines." 
+        es: "El ecosistema definitivo para la gestión integral y operativa de estudios jurídicos.", 
+        en: "The definitive ecosystem for comprehensive law firm management and operations." 
     },
     fullContent: {
         es: "TuLex es una solución integral diseñada para modernizar la gestión diaria de los estudios jurídicos. Como un ecosistema nativo en la nube, centraliza el control de expedientes, automatiza el seguimiento de plazos procesales y facilita la colaboración del equipo legal en tiempo real. Su interfaz intuitiva permite a los abogados tener una visión completa de su cartera de casos desde cualquier dispositivo, reduciendo el margen de error humano y optimizando la rentabilidad del estudio.",
         en: "TuLex is a comprehensive solution designed to modernize the daily management of law firms. As a cloud-native ecosystem, it centralizes case control, automates the tracking of procedural deadlines, and facilitates real-time legal team collaboration. Its intuitive interface allows lawyers to have a complete overview of their case portfolio from any device, reducing human error and optimizing the firm's profitability."
     },
-    tags: ["SaaS", "Management", "Cloud", "Platform"],
-    image: "/lexd.png",
-    bannerImage: "/lexd.png",
+    tags: ["Management", "LegalTech", "Platform"],
+    image: "/tullex.png",
+    bannerImage: "/tulex-ban.png",
     color: "from-[--color-primary]/20 to-orange-500/20" 
   },
   {
-    id: "reclama-ya",
-    title: { es: "ReclamaYa & ReclamarYa", en: "ReclamaYa & ReclamarYa" },
-    category: { es: "LegalTech & Sindical", en: "LegalTech & Syndicate" },
+    id: "portal-asimm",
+    title: { es: "Portal Sindical ASIMM", en: "ASIMM Syndicate Portal" },
+    category: { es: "Plataforma Institucional", en: "Institutional Platform" },
     description: { 
-        es: "Núcleo de automatización inteligente para reclamos, con despliegue general y una versión exclusiva para el sindicato ASIM.", 
-        en: "Intelligent automation core for claims, featuring a general deployment and an exclusive version for the ASIM syndicate." 
+        es: "Sistema de gestión y automatización de reclamos desarrollado exclusivamente para el sindicato ASIMM.", 
+        en: "Claims management and automation system developed exclusively for the ASIMM syndicate." 
     },
     fullContent: {
-        es: "Desarrollamos un motor de automatización dual diseñado para acelerar la resolución de reclamos legales. Por un lado, ReclamaYa opera como una plataforma abierta al público general, simplificando el inicio y seguimiento de trámites indemnizatorios. Por otro lado, ReclamarYa es una adaptación exclusiva y securizada para el sindicato ASIM, integrándose con sus flujos internos. Ambas plataformas comparten una infraestructura robusta que digitaliza el 100% del proceso, desde la carga documental hasta la resolución, brindando un servicio transparente y ágil.",
-        en: "We developed a dual automation engine designed to accelerate the resolution of legal claims. On one hand, ReclamaYa operates as an open platform for the general public, simplifying the initiation and tracking of compensation procedures. On the other hand, ReclamarYa is an exclusive, secured adaptation for the ASIM syndicate, integrating with their internal workflows. Both platforms share a robust infrastructure that digitizes 100% of the process, providing a transparent and agile service."
+        es: "Esta plataforma fue diseñada a medida para las necesidades específicas del Sindicato ASIMM, brindando una herramienta robusta y segura para la gestión de reclamos de sus afiliados. El sistema digitaliza el 100% del proceso, desde la carga documental hasta la resolución final, integrándose perfectamente con los flujos de trabajo internos del sindicato y ofreciendo un servicio transparente, rápido y accesible para los trabajadores.",
+        en: "This platform was custom-designed for the specific needs of the ASIMM Syndicate, providing a robust and secure tool for managing their members' claims. The system digitizes 100% of the process, from document upload to final resolution, integrating perfectly with the syndicate's internal workflows and offering a transparent, fast, and accessible service for workers."
     },
-    tags: ["Automation", "LegalTech", "ASIM", "Dual System"],
-    image: "/reclamaryaaa.png", 
-    images: ["/reclamaya-1.png", "/reclamarya-2.png"], 
-    isSplit: true,
-    bannerImage: "/reclamaryaaa.png",
-    color: "from-orange-600/20 to-red-600/20" 
+    tags: ["Syndicate", "Custom Portal", "Automation"],
+    image: "/asimm_so.png", 
+    bannerImage: "/asimm-ban.png",
+    color: "from-red-600/20 to-rose-600/20" 
+  },
+  {
+    id: "reclamarte",
+    title: { es: "Reclamarte", en: "Reclamarte" },
+    category: { es: "Sistemas ART", en: "Workers' Comp Systems" },
+    description: { 
+        es: "Arquitectura especializada en la automatización y gestión de reclamos por accidentes de trabajo.", 
+        en: "Specialized architecture for the automation and management of workers' compensation claims." 
+    },
+    fullContent: {
+        es: "Reclamarte es una solución LegalTech enfocada específicamente en el nicho de Accidentes de Riesgos de Trabajo (ART). El sistema digitaliza la captura de datos, simplifica el seguimiento de expedientes y estructura la comunicación entre el cliente y el estudio jurídico. Al igual que nuestra línea principal de automatización, su arquitectura está diseñada para reducir los tiempos de gestión y escalar la capacidad operativa del estudio.",
+        en: "Reclamarte is a LegalTech solution specifically focused on the Workers' Compensation (ART) niche. The system digitizes data capture, simplifies case tracking, and structures communication between the client and the law firm. Like our main automation line, its architecture is designed to reduce management times and scale the firm's operational capacity."
+    },
+    tags: ["LegalTech", "ART", "Claims"],
+    image: "/reclamarte_so.png", 
+    bannerImage: "/reclamarte-ban.png",
+    color: "from-red-500/20 to-orange-600/20" 
+  },
+  {
+    id: "devblog",
+    title: { es: "DevBlog", en: "DevBlog" },
+    category: { es: "Tech Hub & Content", en: "Tech Hub & Content" },
+    description: { 
+        es: "Plataforma de contenido técnico y desarrollo, optimizada para rendimiento extremo y SEO estructural.", 
+        en: "Technical and development content platform, optimized for extreme performance and structural SEO." 
+    },
+    fullContent: {
+        es: "Una plataforma de contenido diseñada bajo los más altos estándares de ingeniería web. DevBlog no es solo un repositorio de artículos, es una demostración de arquitectura web eficiente. Construido con una base tecnológica moderna, asegura tiempos de carga instantáneos, una experiencia de lectura inmersiva en modo oscuro y una gestión de contenido escalable enfocada en el ecosistema de desarrolladores.",
+        en: "A content platform designed under the highest standards of web engineering. DevBlog is not just an article repository; it is a demonstration of efficient web architecture. Built on a modern tech stack, it ensures instantaneous load times, an immersive dark mode reading experience, and scalable content management focused on the developer ecosystem."
+    },
+    tags: ["Web Dev", "Performance", "SEO"],
+    image: "/devblog.png", 
+    bannerImage: "/devblog-ban.png",
+    color: "from-fuchsia-600/20 to-purple-600/20" 
   }
 ];
 
@@ -128,27 +175,13 @@ export const deployedProjects = [
     category: { es: "Indemnizaciones accidentes de moto", en: "Motorcycle accident compensation" },
     service: "Presencia Digital",
     liveUrl: "#", 
-  },
-  {
-    id: "reclamarte",
-    title: "Reclamarte",
-    category: { es: "Sistema de reclamos ART", en: "Workers' Comp claims system" },
-    service: "LegalTech & Automation",
-    liveUrl: "#", 
-  },
-  {
-    id: "leonardo-perez",
-    title: "Leonardo Pérez",
-    category: { es: "Derecho Penal & Civil", en: "Criminal & Civil Law" },
-    service: "Diseño & Desarrollo Web",
-    liveUrl: "#", 
   }
 ];
 
 export const clientLogos = [
   { 
     name: "Trust Alliance", 
-    type: "code",
+    type: "code", 
     content: `
       <div class="flex items-center gap-3 text-white select-none">
         <div class="w-8 h-8 md:w-10 md:h-10 shrink-0">
